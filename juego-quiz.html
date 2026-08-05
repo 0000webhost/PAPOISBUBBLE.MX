@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>PAPOIS BUBBLE | Quiz animal</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* =========================
+       PÁGINA DEL QUIZ
+       ========================= */
+
+    .quiz-page {
+      width: min(1180px, calc(100% - 32px));
+      min-height: calc(100vh - 180px);
+      margin: 28px auto 0;
+      padding: 52px 30px;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 32px;
+      background:
+        radial-gradient(
+          circle at 10% 15%,
+          rgba(141, 76, 201, 0.12) 0 30px,
+          transparent 32px
+        ),
+        radial-gradient(
+          circle at 90% 18%,
+          rgba(216, 92, 178, 0.1) 0 44px,
+          transparent 46px
+        ),
+        linear-gradient(
+          180deg,
+          #f8f2ff,
+          #ffffff
+        );
+      box-shadow: 0 18px 42px rgba(36, 80, 102, 0.12);
+      text-align: center;
+    }
+
+    .quiz-intro {
+      max-width: 720px;
+      margin: 0 auto 28px;
+    }
+
+    .quiz-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      padding: 8px 15px;
+      border-radius: 999px;
+      background: #eee4f8;
+      color: #8d4cc9;
+      font-size: 0.92rem;
+      font-weight: 800;
+    }
+
+    .quiz-page h1 {
+      margin: 0 0 12px;
+      color: #8d4cc9;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1.05;
+    }
+
+    .quiz-description {
+      max-width: 680px;
+      margin: 0 auto;
+      color: #4f6f7f;
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+
+    /* =========================
+       CONTENEDOR
+       ========================= */
+
+    .quiz-container {
+      max-width: 760px;
+      margin: 30px auto 0;
+      padding: 36px;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 14px 34px rgba(36, 80, 102, 0.1);
+      text-align: left;
+    }
+
+    .quiz-top {
+      margin-bottom: 24px;
+    }
+
+    .progress-text {
+      color: #8d4cc9;
+      font-size: 0.95rem;
+      font-weight: 800;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 11px;
+      margin: 12px 0 0;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e7ddf0;
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(
+        90deg,
+        #8d4cc9,
+        #d85cb2
+      );
+      transition: width 0.3s ease;
+    }
+
+    /* =========================
+       PREGUNTA
+       ========================= */
+
+    .question-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 78px;
+      height: 78px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      background: linear-gradient(
+        135deg,
+        #eee4f8,
+        #ffeaf7
+      );
+      font-size: 2.3rem;
+    }
+
+    .quiz-question {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100px;
+      margin: 0;
+      color: #245066;
+      font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    /* =========================
+       RESPUESTAS
+       ========================= */
+
+    .quiz-options {
+      display: grid;
+      gap: 13px;
+      margin-top: 24px;
+    }
+
+    .quiz-option {
+      min-height: 54px;
+      padding: 14px 16px;
+      border: 2px solid #ded0ec;
+      border-radius: 17px;
+      background: #ffffff;
+      color: #245066;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 800;
+      text-align: left;
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .quiz-option:hover,
+    .quiz-option:focus-visible {
+      border-color: #8d4cc9;
+      outline: none;
+      background: #f8f2ff;
+      box-shadow: 0 8px 20px rgba(141, 76, 201, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .quiz-option.correct {
+      border-color: #8cc63f;
+      background: #eef9e6;
+      color: #477624;
+    }
+
+    .quiz-option.incorrect {
+      border-color: #d9534f;
+      background: #fff0ef;
+      color: #a73531;
+    }
+
+    .quiz-option:disabled {
+      cursor: default;
+      opacity: 1;
+      transform: none;
+    }
+
+    /* =========================
+       RESULTADO Y BOTONES
+       ========================= */
+
+    .quiz-feedback {
+      min-height: 30px;
+      margin: 20px 0 0;
+      text-align: center;
+      font-weight: 800;
+      line-height: 1.5;
+    }
+
+    .result-box {
+      display: none;
+      margin-top: 22px;
+      padding: 24px;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 20px;
+      background: linear-gradient(
+        135deg,
+        rgba(238, 228, 248, 0.7),
+        rgba(255, 234, 247, 0.7)
+      );
+      text-align: center;
+    }
+
+    .result-box.is-visible {
+      display: block;
+    }
+
+    .result-box strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #8d4cc9;
+      font-size: 1.5rem;
+    }
+
+    .result-box p {
+      margin: 0;
+      color: #4f6f7f;
+      line-height: 1.6;
+    }
+
+    .quiz-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .quiz-next,
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 13px 24px;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 800;
+      text-decoration: none;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .quiz-next {
+      display: none;
+      flex: 1 1 220px;
+      background: linear-gradient(
+        135deg,
+        #8d4cc9,
+        #d85cb2
+      );
+      color: #ffffff;
+      box-shadow: 0 10px 22px rgba(141, 76, 201, 0.2);
+    }
+
+    .back-button {
+      flex: 1 1 220px;
+      background: linear-gradient(
+        135deg,
+        #3a8dde,
+        #168aad
+      );
+      color: #ffffff;
+      box-shadow: 0 10px 22px rgba(58, 141, 222, 0.2);
+    }
+
+    .quiz-next:hover,
+    .quiz-next:focus-visible,
+    .back-button:hover,
+    .back-button:focus-visible {
+      outline: none;
+      transform: translateY(-2px);
+    }
+
+    /* =========================
+       TABLET
+       ========================= */
+
+    @media (max-width: 760px) {
+      .quiz-page {
+        width: calc(100% - 24px);
+        min-height: auto;
+        margin-top: 18px;
+        padding: 42px 20px;
+        border-radius: 24px;
+      }
+
+      .quiz-container {
+        padding: 28px 22px;
+        border-radius: 22px;
+      }
+
+      .quiz-question {
+        min-height: 90px;
+      }
+
+      .quiz-actions {
+        flex-direction: column;
+      }
+
+      .quiz-next,
+      .back-button {
+        width: 100%;
+        flex-basis: auto;
+      }
+    }
+
+    /* =========================
+       CELULAR
+       ========================= */
+
+    @media (max-width: 550px) {
+      .quiz-page {
+        width: calc(100% - 16px);
+        padding: 36px 12px;
+      }
+
+      .quiz-container {
+        padding: 24px 16px;
+      }
+
+      .question-icon {
+        width: 68px;
+        height: 68px;
+        font-size: 2rem;
+      }
+
+      .quiz-question {
+        min-height: 80px;
+      }
+
+      .quiz-option {
+        min-height: 50px;
+        padding: 13px 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+
+    <div class="logo">
+      PAPOIS BUBBLE
+    </div>
+
+    <nav>
+      <a href="index.html">
+        Inicio
+      </a>
+
+      <a href="productos.html">
+        Productos
+      </a>
+
+      <a href="nosotros.html">
+        Nosotros
+      </a>
+
+      <a href="mision-vision.html">
+        Misión y Visión
+      </a>
+
+      <a
+        href="aprende.html"
+        class="active"
+      >
+        Aprende
+      </a>
+
+      <a href="contacto.html">
+        Contacto
+      </a>
+    </nav>
+
+  </div>
+</header>
+
+<main class="quiz-page">
+
+  <section class="quiz-intro">
+
+    <div class="quiz-badge">
+      Juego educativo
+    </div>
+
+    <h1>
+      Quiz PAPOIS
+    </h1>
+
+    <p class="quiz-description">
+      Responde las preguntas y demuestra cuánto sabes
+      sobre los animalitos y la naturaleza.
+    </p>
+
+  </section>
+
+  <section
+    class="quiz-container"
+    aria-labelledby="quizQuestion"
+  >
+
+    <div class="quiz-top">
+
+      <div
+        class="progress-text"
+        id="progressText"
+      ></div>
+
+      <div
+        class="progress-bar"
+        aria-hidden="true"
+      >
+        <div
+          class="progress-fill"
+          id="progressFill"
+        ></div>
+      </div>
+
+    </div>
+
+    <div
+      class="question-icon"
+      aria-hidden="true"
+    >
+      ⭐
+    </div>
+
+    <h2
+      class="quiz-question"
+      id="quizQuestion"
+    ></h2>
+
+    <div
+      class="quiz-options"
+      id="quizOptions"
+    ></div>
+
+    <p
+      class="quiz-feedback"
+      id="quizFeedback"
+      aria-live="polite"
+    ></p>
+
+    <div
+      class="result-box"
+      id="resultBox"
+    >
+
+      <strong id="resultTitle"></strong>
+
+      <p id="resultMessage"></p>
+
+    </div>
+
+    <div class="quiz-actions">
+
+      <button
+        class="quiz-next"
+        type="button"
+        id="quizNext"
+      >
+        Siguiente
+      </button>
+
+      <a
+        href="aprende.html"
+        class="back-button"
+      >
+        Regresar a Aprende
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <p>
+    © 2026 PAPOIS BUBBLE | Todos los derechos reservados
+  </p>
+</footer>
+
+<script>
+  const quizQuestions = [
+    {
+      question:
+        "¿Cuál de estos animales es un marsupial?",
+      options: [
+        "Rana",
+        "Koala",
+        "Abeja",
+        "Búho"
+      ],
+      answer: "Koala"
+    },
+    {
+      question:
+        "¿Qué animal ayuda a polinizar las plantas?",
+      options: [
+        "Serpiente",
+        "Zorro",
+        "Abeja",
+        "Mono"
+      ],
+      answer: "Abeja"
+    },
+    {
+      question:
+        "¿Cómo comienza su vida una rana?",
+      options: [
+        "Como renacuajo",
+        "Como oruga",
+        "Como polluelo",
+        "Como larva de abeja"
+      ],
+      answer: "Como renacuajo"
+    },
+    {
+      question:
+        "¿Qué animal puede volar casi sin hacer ruido?",
+      options: [
+        "Mariposa",
+        "Abeja",
+        "Búho",
+        "Rana"
+      ],
+      answer: "Búho"
+    },
+    {
+      question:
+        "¿Qué animal pasa por una metamorfosis?",
+      options: [
+        "Zorro",
+        "Mariposa",
+        "Koala",
+        "Mono"
+      ],
+      answer: "Mariposa"
+    },
+    {
+      question:
+        "¿Cuál de estos animales no tiene patas?",
+      options: [
+        "Serpiente",
+        "Mono",
+        "Koala",
+        "Zorro"
+      ],
+      answer: "Serpiente"
+    }
+  ];
+
+  const progressText =
+    document.getElementById("progressText");
+
+  const progressFill =
+    document.getElementById("progressFill");
+
+  const quizQuestion =
+    document.getElementById("quizQuestion");
+
+  const quizOptions =
+    document.getElementById("quizOptions");
+
+  const quizFeedback =
+    document.getElementById("quizFeedback");
+
+  const quizNext =
+    document.getElementById("quizNext");
+
+  const resultBox =
+    document.getElementById("resultBox");
+
+  const resultTitle =
+    document.getElementById("resultTitle");
+
+  const resultMessage =
+    document.getElementById("resultMessage");
+
+  let currentQuizQuestion = 0;
+  let quizScore = 0;
+  let quizAnswered = false;
+  let quizFinished = false;
+
+
+  function loadQuizQuestion() {
+    quizAnswered = false;
+    quizFinished = false;
+
+    const current =
+      quizQuestions[currentQuizQuestion];
+
+    const progress =
+      ((currentQuizQuestion + 1) /
+        quizQuestions.length) * 100;
+
+    progressText.textContent =
+      `Pregunta ${currentQuizQuestion + 1} de ${quizQuestions.length}`;
+
+    progressFill.style.width =
+      `${progress}%`;
+
+    quizQuestion.textContent =
+      current.question;
+
+    quizOptions.innerHTML = "";
+
+    quizFeedback.textContent = "";
+    quizFeedback.style.color = "";
+
+    resultBox.classList.remove("is-visible");
+
+    quizNext.style.display = "none";
+    quizNext.textContent =
+      currentQuizQuestion === quizQuestions.length - 1
+        ? "Ver resultado"
+        : "Siguiente pregunta";
+
+    current.options.forEach((option) => {
+      const button =
+        document.createElement("button");
+
+      button.type = "button";
+      button.className = "quiz-option";
+      button.textContent = option;
+
+      button.addEventListener("click", () => {
+        selectQuizAnswer(option, button);
+      });
+
+      quizOptions.appendChild(button);
+    });
+  }
+
+
+  function selectQuizAnswer(
+    selectedOption,
+    selectedButton
+  ) {
+    if (quizAnswered || quizFinished) {
+      return;
+    }
+
+    quizAnswered = true;
+
+    const current =
+      quizQuestions[currentQuizQuestion];
+
+    const optionButtons =
+      document.querySelectorAll(".quiz-option");
+
+    optionButtons.forEach((button) => {
+      button.disabled = true;
+
+      if (
+        button.textContent === current.answer
+      ) {
+        button.classList.add("correct");
+      }
+    });
+
+    if (selectedOption === current.answer) {
+      quizScore += 1;
+
+      quizFeedback.textContent =
+        "¡Respuesta correcta!";
+
+      quizFeedback.style.color =
+        "#218838";
+    } else {
+      selectedButton.classList.add("incorrect");
+
+      quizFeedback.textContent =
+        `Respuesta incorrecta. La correcta es: ${current.answer}.`;
+
+      quizFeedback.style.color =
+        "#c62828";
+    }
+
+    quizNext.style.display =
+      "inline-flex";
+  }
+
+
+  function showQuizResult() {
+    quizFinished = true;
+
+    progressText.textContent =
+      "Quiz completado";
+
+    progressFill.style.width =
+      "100%";
+
+    quizQuestion.textContent =
+      `Obtuviste ${quizScore} de ${quizQuestions.length} respuestas correctas.`;
+
+    quizOptions.innerHTML = "";
+    quizFeedback.textContent = "";
+
+    resultBox.classList.add("is-visible");
+
+    if (quizScore === quizQuestions.length) {
+      resultTitle.textContent =
+        "¡Puntuación perfecta!";
+
+      resultMessage.textContent =
+        "Conoces muy bien a todos los animalitos de PAPOIS BUBBLE.";
+    } else if (quizScore >= 5) {
+      resultTitle.textContent =
+        "¡Excelente resultado!";
+
+      resultMessage.textContent =
+        "Demostraste que sabes mucho sobre nuestros animalitos.";
+    } else if (quizScore >= 3) {
+      resultTitle.textContent =
+        "¡Buen trabajo!";
+
+      resultMessage.textContent =
+        "Sabes bastante, pero todavía puedes descubrir más datos curiosos.";
+    } else {
+      resultTitle.textContent =
+        "Sigue aprendiendo";
+
+      resultMessage.textContent =
+        "Regresa a Aprende, conoce a los animalitos y vuelve a intentarlo.";
+    }
+
+    quizNext.textContent =
+      "Volver a jugar";
+
+    quizNext.style.display =
+      "inline-flex";
+  }
+
+
+  function restartQuiz() {
+    currentQuizQuestion = 0;
+    quizScore = 0;
+    quizAnswered = false;
+    quizFinished = false;
+
+    loadQuizQuestion();
+  }
+
+
+  quizNext.addEventListener("click", () => {
+    if (quizFinished) {
+      restartQuiz();
+      return;
+    }
+
+    if (!quizAnswered) {
+      return;
+    }
+
+    if (
+      currentQuizQuestion <
+      quizQuestions.length - 1
+    ) {
+      currentQuizQuestion += 1;
+      loadQuizQuestion();
+      return;
+    }
+
+    showQuizResult();
+  });
+
+
+  loadQuizQuestion();
+</script>
+
+</body>
+</html>
