@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>PAPOIS BUBBLE | Contacto</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* =========================
+       PORTADA DE CONTACTO
+       ========================= */
+
+    .contact-hero {
+      position: relative;
+      width: min(1180px, calc(100% - 32px));
+      margin: 28px auto 0;
+      padding: 70px 30px;
+      overflow: hidden;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 32px;
+      background:
+        radial-gradient(
+          circle at 12% 25%,
+          rgba(255, 255, 255, 0.4) 0 26px,
+          transparent 28px
+        ),
+        radial-gradient(
+          circle at 87% 20%,
+          rgba(255, 255, 255, 0.28) 0 46px,
+          transparent 48px
+        ),
+        radial-gradient(
+          circle at 78% 82%,
+          rgba(255, 255, 255, 0.22) 0 20px,
+          transparent 22px
+        ),
+        linear-gradient(
+          135deg,
+          #3a8dde,
+          #73b9f2
+        );
+      box-shadow: 0 18px 42px rgba(36, 80, 102, 0.14);
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .contact-hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .contact-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      padding: 8px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 800;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .contact-hero h1 {
+      margin: 0 0 16px;
+      color: #ffffff;
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      line-height: 1.05;
+    }
+
+    .contact-hero p {
+      max-width: 720px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 1.08rem;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       CONTENIDO PRINCIPAL
+       ========================= */
+
+    .contact-main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 28px auto 0;
+      padding: 40px;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 32px;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 18px 42px rgba(36, 80, 102, 0.12);
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      margin-top: 0;
+      text-align: left;
+    }
+
+    /* =========================
+       FORMULARIO
+       ========================= */
+
+    .contact-form-box {
+      padding: 32px;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 26px;
+      background: #ffffff;
+      box-shadow: 0 14px 30px rgba(36, 80, 102, 0.08);
+    }
+
+    .contact-form-box h2 {
+      margin: 0 0 10px;
+      color: #245066;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+    }
+
+    .contact-form-intro {
+      margin: 0 0 24px;
+      color: #4f6f7f;
+      line-height: 1.65;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 17px;
+      width: 100%;
+      padding: 0;
+      border: none;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .contact-field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .contact-field label {
+      color: #245066;
+      font-size: 0.95rem;
+      font-weight: 800;
+    }
+
+    .contact-field input,
+    .contact-field textarea {
+      width: 100%;
+      min-width: 0;
+      padding: 14px 16px;
+      border: 1px solid rgba(22, 138, 173, 0.2);
+      border-radius: 16px;
+      background: #fbfeff;
+      color: #245066;
+      font-family: inherit;
+      font-size: 16px;
+      transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .contact-field textarea {
+      min-height: 160px;
+      resize: vertical;
+    }
+
+    .contact-field input::placeholder,
+    .contact-field textarea::placeholder {
+      color: #8aa0ab;
+    }
+
+    .contact-field input:focus,
+    .contact-field textarea:focus {
+      border-color: rgba(255, 143, 171, 0.75);
+      outline: none;
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(255, 143, 171, 0.16);
+    }
+
+    .field-error {
+      min-height: 18px;
+      margin: 0;
+      color: #c62828;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .contact-submit {
+      width: 100%;
+      margin-top: 4px;
+    }
+
+    .form-status {
+      min-height: 24px;
+      margin: 0;
+      text-align: center;
+      font-size: 0.95rem;
+      font-weight: 800;
+    }
+
+    .form-status.success {
+      color: #218838;
+    }
+
+    .form-status.error {
+      color: #c62828;
+    }
+
+    /* =========================
+       INSTAGRAM
+       ========================= */
+
+    .contact-info-box {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .instagram-card {
+      position: relative;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 410px;
+      overflow: hidden;
+      padding: 34px 28px;
+      border-radius: 26px;
+      background:
+        radial-gradient(
+          circle at 18% 20%,
+          rgba(255, 255, 255, 0.22) 0 24px,
+          transparent 26px
+        ),
+        radial-gradient(
+          circle at 85% 78%,
+          rgba(255, 255, 255, 0.18) 0 42px,
+          transparent 44px
+        ),
+        linear-gradient(
+          135deg,
+          #d85cb2,
+          #8d4cc9,
+          #3a8dde
+        );
+      box-shadow: 0 16px 34px rgba(86, 75, 150, 0.18);
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .instagram-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 92px;
+      height: 92px;
+      margin-bottom: 22px;
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      font-size: 3rem;
+      font-weight: 400;
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+    }
+
+    .instagram-card h2 {
+      margin: 0 0 10px;
+      color: #ffffff;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+    }
+
+    .instagram-card p {
+      margin: 0 0 22px;
+      color: rgba(255, 255, 255, 0.94);
+      line-height: 1.6;
+    }
+
+    .instagram-user {
+      display: inline-flex;
+      margin-bottom: 24px;
+      padding: 9px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .instagram-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 13px 24px;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #8d4cc9;
+      font-weight: 800;
+      text-decoration: none;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .instagram-button:hover,
+    .instagram-button:focus-visible {
+      background: #fff8ff;
+      box-shadow: 0 12px 26px rgba(36, 20, 90, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .contact-note {
+      padding: 20px;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 20px;
+      background: linear-gradient(
+        135deg,
+        rgba(184, 236, 255, 0.35),
+        rgba(255, 244, 163, 0.35)
+      );
+      color: #4f6f7f;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .contact-note strong {
+      color: #245066;
+    }
+
+    /* =========================
+       MENSAJE FINAL
+       ========================= */
+
+    .contact-message {
+      width: min(1180px, calc(100% - 32px));
+      margin: 28px auto 0;
+      padding: 42px 30px;
+      border-radius: 32px;
+      background:
+        radial-gradient(
+          circle at 15% 22%,
+          rgba(255, 255, 255, 0.22) 0 24px,
+          transparent 26px
+        ),
+        linear-gradient(
+          135deg,
+          #8cc63f,
+          #64b83a
+        );
+      box-shadow: 0 18px 42px rgba(36, 80, 102, 0.12);
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .contact-message h2 {
+      margin: 0 0 12px;
+      color: #ffffff;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+    }
+
+    .contact-message p {
+      max-width: 720px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       TABLET
+       ========================= */
+
+    @media (max-width: 900px) {
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .instagram-card {
+        min-height: 360px;
+      }
+    }
+
+    /* =========================
+       CELULAR
+       ========================= */
+
+    @media (max-width: 760px) {
+      .contact-hero,
+      .contact-main,
+      .contact-message {
+        width: calc(100% - 24px);
+        margin-top: 18px;
+        border-radius: 24px;
+      }
+
+      .contact-hero {
+        padding: 48px 20px;
+      }
+
+      .contact-hero h1 {
+        font-size: clamp(2.2rem, 11vw, 3.2rem);
+      }
+
+      .contact-hero p {
+        font-size: 1rem;
+      }
+
+      .contact-main {
+        padding: 20px;
+      }
+
+      .contact-form-box {
+        padding: 24px 20px;
+      }
+
+      .instagram-card {
+        min-height: 330px;
+        padding: 30px 20px;
+      }
+
+      .contact-message {
+        padding: 36px 20px;
+      }
+    }
+
+    /* =========================
+       CELULARES PEQUEÑOS
+       ========================= */
+
+    @media (max-width: 420px) {
+      .contact-hero,
+      .contact-main,
+      .contact-message {
+        width: calc(100% - 16px);
+      }
+
+      .contact-hero {
+        padding: 42px 16px;
+      }
+
+      .contact-main {
+        padding: 14px;
+      }
+
+      .contact-form-box {
+        padding: 22px 16px;
+        border-radius: 20px;
+      }
+
+      .instagram-card {
+        min-height: 310px;
+        padding: 28px 16px;
+        border-radius: 20px;
+      }
+
+      .instagram-button,
+      .contact-submit {
+        width: 100%;
+      }
+
+      .contact-message {
+        padding: 32px 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+
+    <div class="logo">
+      PAPOIS BUBBLE
+    </div>
+
+    <nav>
+      <a href="index.html">
+        Inicio
+      </a>
+
+      <a href="productos.html">
+        Productos
+      </a>
+
+      <a href="nosotros.html">
+        Nosotros
+      </a>
+
+      <a href="mision-vision.html">
+        Misión y Visión
+      </a>
+
+      <a href="aprende.html">
+        Aprende
+      </a>
+
+      <a
+        href="contacto.html"
+        class="active"
+      >
+        Contacto
+      </a>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+  <!-- Portada -->
+
+  <section class="contact-hero">
+
+    <div class="contact-hero-content">
+
+      <div class="contact-badge">
+        Estamos para ayudarte
+      </div>
+
+      <h1>
+        Hablemos
+      </h1>
+
+      <p>
+        ¿Quieres conocer más sobre PAPOIS BUBBLE?
+        Envíanos un mensaje y descubre cómo transformamos
+        la hora del baño en una experiencia llena de cuidado,
+        diversión y aprendizaje.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- Formulario e Instagram -->
+
+  <section class="contact-main">
+
+    <div class="contact-layout">
+
+      <!-- Formulario -->
+
+      <section class="contact-form-box">
+
+        <h2>
+          Envíanos un mensaje
+        </h2>
+
+        <p class="contact-form-intro">
+          Completa los campos y cuéntanos cómo podemos ayudarte.
+        </p>
+
+        <form
+          class="contact-form"
+          id="contactForm"
+          novalidate
+        >
+
+          <div class="contact-field">
+
+            <label for="contactName">
+              Nombre completo
+            </label>
+
+            <input
+              type="text"
+              id="contactName"
+              name="name"
+              placeholder="Escribe tu nombre"
+              autocomplete="name"
+              required
+            >
+
+            <p
+              class="field-error"
+              id="nameError"
+            ></p>
+
+          </div>
+
+          <div class="contact-field">
+
+            <label for="contactEmail">
+              Correo electrónico
+            </label>
+
+            <input
+              type="email"
+              id="contactEmail"
+              name="email"
+              placeholder="nombre@correo.com"
+              autocomplete="email"
+              required
+            >
+
+            <p
+              class="field-error"
+              id="emailError"
+            ></p>
+
+          </div>
+
+          <div class="contact-field">
+
+            <label for="contactSubject">
+              Asunto
+            </label>
+
+            <input
+              type="text"
+              id="contactSubject"
+              name="subject"
+              placeholder="¿En qué podemos ayudarte?"
+              required
+            >
+
+            <p
+              class="field-error"
+              id="subjectError"
+            ></p>
+
+          </div>
+
+          <div class="contact-field">
+
+            <label for="contactMessage">
+              Mensaje
+            </label>
+
+            <textarea
+              id="contactMessage"
+              name="message"
+              placeholder="Escribe aquí tu mensaje"
+              required
+            ></textarea>
+
+            <p
+              class="field-error"
+              id="messageError"
+            ></p>
+
+          </div>
+
+          <button
+            class="btn btn-primary contact-submit"
+            type="submit"
+            id="contactSubmit"
+          >
+            Enviar mensaje
+          </button>
+
+          <p
+            class="form-status"
+            id="formStatus"
+            aria-live="polite"
+          ></p>
+
+        </form>
+
+      </section>
+
+      <!-- Instagram -->
+
+      <aside class="contact-info-box">
+
+        <div class="instagram-card">
+
+          <div
+            class="instagram-icon"
+            aria-hidden="true"
+          >
+            ◎
+          </div>
+
+          <h2>
+            Síguenos en Instagram
+          </h2>
+
+          <p>
+            Conoce nuestros jabones, animalitos,
+            contenidos educativos y próximas aventuras.
+          </p>
+
+          <div class="instagram-user">
+            @papois.bubble
+          </div>
+
+          <a
+            class="instagram-button"
+            href="https://www.instagram.com/papois.bubble/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Visitar Instagram
+          </a>
+
+        </div>
+
+        <div class="contact-note">
+          <strong>Este es nuestro único canal de contacto.</strong>
+          Escríbenos por medio del formulario o visita nuestro
+          perfil oficial de Instagram.
+        </div>
+
+      </aside>
+
+    </div>
+
+  </section>
+
+  <!-- Mensaje final -->
+
+  <section class="contact-message">
+
+    <h2>
+      Cada aventura comienza con una pregunta
+    </h2>
+
+    <p>
+      Queremos acompañar a las familias y crear momentos
+      especiales durante la hora del baño. Cuéntanos qué
+      quieres saber sobre PAPOIS BUBBLE.
+    </p>
+
+  </section>
+
+</main>
+
+<footer>
+  <p>
+    © 2026 PAPOIS BUBBLE | Todos los derechos reservados
+  </p>
+</footer>
+
+<script>
+  const contactForm =
+    document.getElementById("contactForm");
+
+  const contactSubmit =
+    document.getElementById("contactSubmit");
+
+  const formStatus =
+    document.getElementById("formStatus");
+
+  const contactName =
+    document.getElementById("contactName");
+
+  const contactEmail =
+    document.getElementById("contactEmail");
+
+  const contactSubject =
+    document.getElementById("contactSubject");
+
+  const contactMessage =
+    document.getElementById("contactMessage");
+
+  const nameError =
+    document.getElementById("nameError");
+
+  const emailError =
+    document.getElementById("emailError");
+
+  const subjectError =
+    document.getElementById("subjectError");
+
+  const messageError =
+    document.getElementById("messageError");
+
+
+  function clearErrors() {
+    nameError.textContent = "";
+    emailError.textContent = "";
+    subjectError.textContent = "";
+    messageError.textContent = "";
+
+    formStatus.textContent = "";
+    formStatus.className = "form-status";
+  }
+
+
+  function isValidEmail(email) {
+    const emailPattern =
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    return emailPattern.test(email);
+  }
+
+
+  contactForm.addEventListener(
+    "submit",
+    (event) => {
+
+      event.preventDefault();
+
+      clearErrors();
+
+      const name =
+        contactName.value.trim();
+
+      const email =
+        contactEmail.value.trim();
+
+      const subject =
+        contactSubject.value.trim();
+
+      const message =
+        contactMessage.value.trim();
+
+      let isValid = true;
+
+
+      if (name.length < 3) {
+        nameError.textContent =
+          "Escribe un nombre válido.";
+
+        isValid = false;
+      }
+
+
+      if (!isValidEmail(email)) {
+        emailError.textContent =
+          "Escribe un correo electrónico válido.";
+
+        isValid = false;
+      }
+
+
+      if (subject.length < 3) {
+        subjectError.textContent =
+          "Escribe el asunto de tu mensaje.";
+
+        isValid = false;
+      }
+
+
+      if (message.length < 10) {
+        messageError.textContent =
+          "El mensaje debe tener al menos 10 caracteres.";
+
+        isValid = false;
+      }
+
+
+      if (!isValid) {
+        formStatus.textContent =
+          "Revisa los campos marcados.";
+
+        formStatus.classList.add("error");
+
+        return;
+      }
+
+
+      contactSubmit.disabled = true;
+
+      contactSubmit.textContent =
+        "Enviando...";
+
+
+      setTimeout(() => {
+
+        formStatus.textContent =
+          `¡Gracias, ${name}! Tu mensaje fue enviado correctamente.`;
+
+        formStatus.classList.add("success");
+
+        contactForm.reset();
+
+        contactSubmit.disabled = false;
+
+        contactSubmit.textContent =
+          "Enviar mensaje";
+
+      }, 900);
+
+    }
+  );
+
+
+  const fields = [
+    contactName,
+    contactEmail,
+    contactSubject,
+    contactMessage
+  ];
+
+
+  fields.forEach((field) => {
+
+    field.addEventListener("input", () => {
+
+      formStatus.textContent = "";
+      formStatus.className = "form-status";
+
+      if (field === contactName) {
+        nameError.textContent = "";
+      }
+
+      if (field === contactEmail) {
+        emailError.textContent = "";
+      }
+
+      if (field === contactSubject) {
+        subjectError.textContent = "";
+      }
+
+      if (field === contactMessage) {
+        messageError.textContent = "";
+      }
+
+    });
+
+  });
+</script>
+
+</body>
+</html>
