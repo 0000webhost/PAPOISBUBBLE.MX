@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>PAPOIS BUBBLE | Productos</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* =========================
+       PORTADA DE PRODUCTOS
+       ========================= */
+
+    .products-hero {
+      position: relative;
+      width: min(1180px, calc(100% - 32px));
+      margin: 28px auto 0;
+      padding: 65px 30px;
+      overflow: hidden;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 32px;
+      background:
+        radial-gradient(
+          circle at 12% 22%,
+          rgba(255, 255, 255, 0.42) 0 25px,
+          transparent 27px
+        ),
+        radial-gradient(
+          circle at 88% 20%,
+          rgba(255, 255, 255, 0.3) 0 44px,
+          transparent 46px
+        ),
+        radial-gradient(
+          circle at 80% 84%,
+          rgba(255, 255, 255, 0.22) 0 20px,
+          transparent 22px
+        ),
+        linear-gradient(
+          135deg,
+          #3a8dde,
+          #73b9f2
+        );
+      box-shadow: 0 18px 42px rgba(36, 80, 102, 0.14);
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .products-hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .products-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      padding: 8px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 800;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .products-hero h1 {
+      margin: 0 0 16px;
+      color: #ffffff;
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
+      line-height: 1.05;
+    }
+
+    .products-hero p {
+      max-width: 720px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 1.08rem;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       SECCIÓN DE PRODUCTOS
+       ========================= */
+
+    .products-section {
+      width: min(1180px, calc(100% - 32px));
+      margin: 28px auto 0;
+      padding: 48px 40px;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 32px;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 18px 42px rgba(36, 80, 102, 0.12);
+    }
+
+    .products-heading {
+      margin-bottom: 34px;
+      text-align: center;
+    }
+
+    .products-heading h2 {
+      margin: 0 0 12px;
+      color: #245066;
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    .products-heading p {
+      max-width: 740px;
+      margin: 0 auto;
+      color: #4f6f7f;
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(240px, 100%), 1fr)
+      );
+      gap: 22px;
+    }
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      padding: 18px;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 24px;
+      background: #ffffff;
+      box-shadow: 0 14px 28px rgba(36, 80, 102, 0.08);
+      text-align: left;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 18px 34px rgba(36, 80, 102, 0.13);
+      transform: translateY(-6px);
+    }
+
+    .product-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      margin-bottom: 16px;
+      overflow: hidden;
+      border-radius: 20px;
+      background: linear-gradient(
+        135deg,
+        rgba(184, 236, 255, 0.35),
+        rgba(255, 244, 163, 0.38)
+      );
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      padding: 16px;
+      object-fit: contain;
+    }
+
+    .product-tag {
+      display: inline-flex;
+      align-self: flex-start;
+      margin-bottom: 10px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: #eaf4ff;
+      color: #168aad;
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .product-card h3 {
+      margin: 0 0 8px;
+      color: #245066;
+      font-size: 1.35rem;
+    }
+
+    .product-description {
+      margin: 0 0 14px;
+      color: #4f6f7f;
+      line-height: 1.55;
+    }
+
+    .product-price {
+      margin: auto 0 16px;
+      color: #168aad;
+      font-size: 1.45rem;
+      font-weight: 800;
+    }
+
+    .product-card .btn {
+      width: 100%;
+    }
+
+    /* =========================
+       PAQUETE
+       ========================= */
+
+    .pack-card {
+      grid-column: span 2;
+      background: linear-gradient(
+        145deg,
+        #ffffff,
+        #f4faff
+      );
+    }
+
+    .pack-card-content {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .pack-card .product-image {
+      margin-bottom: 0;
+    }
+
+    .pack-information {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .pack-selector {
+      display: none;
+      width: 100%;
+      margin-top: 18px;
+      padding: 20px;
+      border: 2px solid rgba(58, 141, 222, 0.35);
+      border-radius: 20px;
+      background: #ffffff;
+    }
+
+    .pack-selector.is-open {
+      display: block;
+    }
+
+    .pack-selector h4 {
+      margin: 0 0 6px;
+      color: #245066;
+      font-size: 1.15rem;
+    }
+
+    .pack-instructions {
+      margin: 0 0 16px;
+      color: #4f6f7f;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .pack-fields {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .pack-field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .pack-field label {
+      color: #245066;
+      font-size: 0.88rem;
+      font-weight: 800;
+    }
+
+    .pack-field select {
+      width: 100%;
+      min-width: 0;
+      padding: 12px 14px;
+      border: 1px solid rgba(22, 138, 173, 0.24);
+      border-radius: 14px;
+      background: #fbfeff;
+      color: #245066;
+      font-size: 16px;
+    }
+
+    .pack-field select:focus {
+      border-color: #3a8dde;
+      outline: 3px solid rgba(58, 141, 222, 0.14);
+    }
+
+    .pack-summary {
+      min-height: 48px;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: #f2f8ff;
+      color: #4f6f7f;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .pack-summary strong {
+      color: #168aad;
+    }
+
+    .pack-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .pack-actions .btn {
+      flex: 1;
+    }
+
+    .pack-error {
+      min-height: 20px;
+      margin: 10px 0 0;
+      color: #c62828;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    /* =========================
+       MENSAJE FINAL
+       ========================= */
+
+    .products-message {
+      width: min(1180px, calc(100% - 32px));
+      margin: 28px auto 0;
+      padding: 44px 30px;
+      border-radius: 32px;
+      background:
+        radial-gradient(
+          circle at 15% 22%,
+          rgba(255, 255, 255, 0.22) 0 24px,
+          transparent 26px
+        ),
+        radial-gradient(
+          circle at 88% 76%,
+          rgba(255, 255, 255, 0.18) 0 38px,
+          transparent 40px
+        ),
+        linear-gradient(
+          135deg,
+          #8cc63f,
+          #64b83a
+        );
+      box-shadow: 0 18px 42px rgba(36, 80, 102, 0.12);
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .products-message h2 {
+      margin: 0 0 12px;
+      color: #ffffff;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+    }
+
+    .products-message p {
+      max-width: 740px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       CARRITO
+       ========================= */
+
+    body.cart-open {
+      overflow: hidden;
+    }
+
+    .cart-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .cart-modal.is-open {
+      display: flex;
+    }
+
+    .cart-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(36, 80, 102, 0.5);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+
+    .cart-dialog {
+      position: relative;
+      z-index: 1;
+      width: min(650px, 100%);
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 30px;
+      border: 1px solid rgba(36, 80, 102, 0.1);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.99);
+      box-shadow: 0 25px 65px rgba(36, 80, 102, 0.25);
+    }
+
+    .cart-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 50%;
+      background: #fff4a3;
+      color: #168aad;
+      cursor: pointer;
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+
+    .cart-badge {
+      display: inline-flex;
+      margin-bottom: 12px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: #eaf4ff;
+      color: #168aad;
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .cart-dialog h2 {
+      margin: 0 45px 8px 0;
+      color: #245066;
+      font-size: clamp(1.7rem, 4vw, 2.3rem);
+    }
+
+    .cart-copy {
+      margin: 0;
+      color: #4f6f7f;
+      line-height: 1.55;
+    }
+
+    .cart-items {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .cart-empty {
+      padding: 24px;
+      border: 1px dashed rgba(36, 80, 102, 0.2);
+      border-radius: 18px;
+      background: #f8fcff;
+      color: #4f6f7f;
+      text-align: center;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 15px;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 18px;
+      background: linear-gradient(
+        180deg,
+        #ffffff,
+        #f7fbff
+      );
+    }
+
+    .cart-item-info {
+      min-width: 0;
+    }
+
+    .cart-item-info strong {
+      display: block;
+      color: #245066;
+      overflow-wrap: anywhere;
+    }
+
+    .cart-item-info p {
+      margin: 4px 0 0;
+      color: #4f6f7f;
+      font-size: 0.9rem;
+      overflow-wrap: anywhere;
+    }
+
+    .cart-item-controls {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .cart-step,
+    .cart-remove {
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    .cart-step {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      background: #eaf4ff;
+      color: #168aad;
+    }
+
+    .cart-remove {
+      padding: 8px 12px;
+      background: #fff4d3;
+      color: #bd7400;
+    }
+
+    .cart-summary {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .cart-summary div {
+      padding: 15px;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 18px;
+      background: #f8fcff;
+    }
+
+    .cart-summary span {
+      display: block;
+      margin-bottom: 4px;
+      color: #4f6f7f;
+      font-size: 0.85rem;
+    }
+
+    .cart-summary strong {
+      color: #245066;
+      font-size: 1.1rem;
+    }
+
+    .cart-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .cart-actions .btn {
+      flex: 1 1 190px;
+    }
+
+    /* =========================
+       TABLET
+       ========================= */
+
+    @media (max-width: 950px) {
+      .pack-card {
+        grid-column: span 1;
+      }
+
+      .pack-card-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* =========================
+       CELULAR
+       ========================= */
+
+    @media (max-width: 760px) {
+      .products-hero,
+      .products-section,
+      .products-message {
+        width: calc(100% - 24px);
+        margin-top: 18px;
+        border-radius: 24px;
+      }
+
+      .products-hero {
+        padding: 48px 20px;
+      }
+
+      .products-hero h1 {
+        font-size: clamp(2.2rem, 11vw, 3.2rem);
+      }
+
+      .products-hero p {
+        font-size: 1rem;
+      }
+
+      .products-section {
+        padding: 36px 20px;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .product-card {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .product-card:hover {
+        transform: none;
+      }
+
+      .pack-fields {
+        grid-template-columns: 1fr;
+      }
+
+      .pack-actions {
+        flex-direction: column;
+      }
+
+      .pack-actions .btn {
+        width: 100%;
+      }
+
+      .products-message {
+        padding: 36px 20px;
+      }
+
+      .cart-modal {
+        padding: 12px;
+      }
+
+      .cart-dialog {
+        width: 100%;
+        max-height: 92vh;
+        padding: 25px 18px;
+        border-radius: 22px;
+      }
+
+      .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cart-item-controls {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .cart-actions {
+        flex-direction: column;
+      }
+
+      .cart-actions .btn {
+        width: 100%;
+        flex-basis: auto;
+      }
+    }
+
+    /* =========================
+       CELULARES PEQUEÑOS
+       ========================= */
+
+    @media (max-width: 420px) {
+      .products-hero,
+      .products-section,
+      .products-message {
+        width: calc(100% - 16px);
+      }
+
+      .products-hero {
+        padding: 42px 16px;
+      }
+
+      .products-section {
+        padding: 30px 14px;
+      }
+
+      .product-card {
+        padding: 15px;
+        border-radius: 20px;
+      }
+
+      .pack-selector {
+        padding: 16px 13px;
+      }
+
+      .cart-summary {
+        grid-template-columns: 1fr;
+      }
+
+      .products-message {
+        padding: 32px 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+
+    <div class="logo">
+      PAPOIS BUBBLE
+    </div>
+
+    <nav>
+      <a href="index.html">
+        Inicio
+      </a>
+
+      <a
+        href="productos.html"
+        class="active"
+      >
+        Productos
+      </a>
+
+      <a href="nosotros.html">
+        Nosotros
+      </a>
+
+      <a href="mision-vision.html">
+        Misión y Visión
+      </a>
+
+      <a href="aprende.html">
+        Aprende
+      </a>
+
+      <a href="contacto.html">
+        Contacto
+      </a>
+
+      <button
+        class="nav-cart"
+        type="button"
+        id="openCartButton"
+        aria-label="Abrir carrito de compra"
+      >
+        <span
+          class="nav-cart-icon"
+          aria-hidden="true"
+        >
+          🛒
+        </span>
+
+        <span
+          class="nav-cart-count"
+          id="cartCount"
+        >
+          0
+        </span>
+      </button>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+  <!-- Portada -->
+
+  <section class="products-hero">
+
+    <div class="products-hero-content">
+
+      <div class="products-badge">
+        Magia de espuma para grandes aventuras
+      </div>
+
+      <h1>
+        Nuestros jabones
+      </h1>
+
+      <p>
+        Descubre jabones infantiles con forma de animalitos,
+        creados para transformar la hora del baño en una
+        experiencia de cuidado, diversión y aprendizaje.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- Productos -->
+
+  <section class="products-section">
+
+    <div class="products-heading">
+
+      <h2>
+        Elige tu animalito favorito
+      </h2>
+
+      <p>
+        Cada jabón tiene un personaje especial y puede
+        acompañarse de una tarjeta coleccionable con
+        información sobre el animal.
+      </p>
+
+    </div>
+
+    <div class="products-grid">
+
+      <!-- Rana -->
+
+      <article class="product-card">
+
+        <div class="product-image">
+          <img
+            src="assets/soap-rana.png"
+            alt="Jabón infantil con forma de rana"
+          >
+        </div>
+
+        <span class="product-tag">
+          Jabón infantil
+        </span>
+
+        <h3>
+          Jabón Rana
+        </h3>
+
+        <p class="product-description">
+          La saltarina del agua.
+        </p>
+
+        <p class="product-price">
+          $70
+        </p>
+
+        <button
+          class="btn btn-primary product-add"
+          type="button"
+          data-product="Jabón Rana"
+          data-price="70"
+        >
+          Agregar al carrito
+        </button>
+
+      </article>
+
+      <!-- Zorro -->
+
+      <article class="product-card">
+
+        <div class="product-image">
+          <img
+            src="assets/soap-zorro.png"
+            alt="Jabón infantil con forma de zorro"
+          >
+        </div>
+
+        <span class="product-tag">
+          Jabón infantil
+        </span>
+
+        <h3>
+          Jabón Zorro
+        </h3>
+
+        <p class="product-description">
+          El maestro del sigilo.
+        </p>
+
+        <p class="product-price">
+          $70
+        </p>
+
+        <button
+          class="btn btn-primary product-add"
+          type="button"
+          data-product="Jabón Zorro"
+          data-price="70"
+        >
+          Agregar al carrito
+        </button>
+
+      </article>
+
+      <!-- Koala -->
+
+      <article class="product-card">
+
+        <div class="product-image">
+          <img
+            src="assets/soap-koala.png"
+            alt="Jabón infantil con forma de koala"
+          >
+        </div>
+
+        <span class="product-tag">
+          Jabón infantil
+        </span>
+
+        <h3>
+          Jabón Koala
+        </h3>
+
+        <p class="product-description">
+          El dormilón del bosque.
+        </p>
+
+        <p class="product-price">
+          $70
+        </p>
+
+        <button
+          class="btn btn-primary product-add"
+          type="button"
+          data-product="Jabón Koala"
+          data-price="70"
+        >
+          Agregar al carrito
+        </button>
+
+      </article>
+
+      <!-- Búho -->
+
+      <article class="product-card">
+
+        <div class="product-image">
+          <img
+            src="assets/soap-buho.png"
+            alt="Jabón infantil con forma de búho"
+          >
+        </div>
+
+        <span class="product-tag">
+          Jabón infantil
+        </span>
+
+        <h3>
+          Jabón Búho
+        </h3>
+
+        <p class="product-description">
+          El vigilante nocturno.
+        </p>
+
+        <p class="product-price">
+          $70
+        </p>
+
+        <button
+          class="btn btn-primary product-add"
+          type="button"
+          data-product="Jabón Búho"
+          data-price="70"
+        >
+          Agregar al carrito
+        </button>
+
+      </article>
+
+      <!-- Mono -->
+
+      <article class="product-card">
+
+        <div class="product-image">
+          <img
+            src="assets/soap-mono.png"
+            alt="Jabón infantil con forma de mono"
+          >
+        </div>
+
+        <span class="product-tag">
+          Jabón infantil
+        </span>
+
+        <h3>
+          Jabón Mono
+        </h3>
+
+        <p class="product-description">
+          El acróbata de la selva.
+        </p>
+
+        <p class="product-price">
+          $70
+        </p>
+
+        <button
+          class="btn btn-primary product-add"
+          type="button"
+          data-product="Jabón Mono"
+          data-price="70"
+        >
+          Agregar al carrito
+        </button>
+
+      </article>
+
+      <!-- Mariposa -->
+
+      <article class="product-card">
+
+        <div class="product-image">
+          <img
+            src="assets/soap-mariposa.png"
+            alt="Jabón infantil con forma de mariposa"
+          >
+        </div>
+
+        <span class="product-tag">
+          Jabón infantil
+        </span>
+
+        <h3>
+          Jabón Mariposa
+        </h3>
+
+        <p class="product-description">
+          La reina de la transformación.
+        </p>
+
+        <p class="product-price">
+          $70
+        </p>
+
+        <button
+          class="btn btn-primary product-add"
+          type="button"
+          data-product="Jabón Mariposa"
+          data-price="70"
+        >
+          Agregar al carrito
+        </button>
+
+      </article>
+
+      <!-- Serpiente -->
+
+      <article class="product-card">
+
+        <div class="product-image">
+          <img
+            src="assets/soap-serpiente.png"
+            alt="Jabón infantil con forma de serpiente"
+          >
+        </div>
+
+        <span class="product-tag">
+          Jabón infantil
+        </span>
+
+        <h3>
+          Jabón Serpiente
+        </h3>
+
+        <p class="product-description">
+          La experta en deslizarse.
+        </p>
+
+        <p class="product-price">
+          $70
+        </p>
+
+        <button
+          class="btn btn-primary product-add"
+          type="button"
+          data-product="Jabón Serpiente"
+          data-price="70"
+        >
+          Agregar al carrito
+        </button>
+
+      </article>
+
+      <!-- Abeja -->
+
+      <article class="product-card">
+
+        <div class="product-image">
+          <img
+            src="assets/soap-abeja.png"
+            alt="Jabón infantil con forma de abeja"
+          >
+        </div>
+
+        <span class="product-tag">
+          Jabón infantil
+        </span>
+
+        <h3>
+          Jabón Abeja
+        </h3>
+
+        <p class="product-description">
+          La guardiana de las flores.
+        </p>
+
+        <p class="product-price">
+          $70
+        </p>
+
+        <button
+          class="btn btn-primary product-add"
+          type="button"
+          data-product="Jabón Abeja"
+          data-price="70"
+        >
+          Agregar al carrito
+        </button>
+
+      </article>
+
+      <!-- Paquete -->
+
+      <article class="product-card pack-card">
+
+        <div class="pack-card-content">
+
+          <div class="product-image">
+            <img
+              src="assets/soap-pack.png"
+              alt="Paquete de dos jabones PAPOIS BUBBLE"
+            >
+          </div>
+
+          <div class="pack-information">
+
+            <span class="product-tag">
+              Oferta especial
+            </span>
+
+            <h3>
+              Paquete de 2 jabones
+            </h3>
+
+            <p class="product-description">
+              Escoge dos jabones iguales o diferentes y
+              crea tu propio paquete.
+            </p>
+
+            <p class="product-price">
+              $120
+            </p>
+
+            <button
+              class="btn btn-primary"
+              type="button"
+              id="openPackSelector"
+              aria-expanded="false"
+              aria-controls="packSelector"
+            >
+              Elegir jabones
+            </button>
+
+            <div
+              class="pack-selector"
+              id="packSelector"
+            >
+
+              <h4>
+                Personaliza tu paquete
+              </h4>
+
+              <p class="pack-instructions">
+                Selecciona un jabón en cada lista. Puedes
+                elegir dos iguales o dos diferentes.
+              </p>
+
+              <div class="pack-fields">
+
+                <div class="pack-field">
+
+                  <label for="firstPackSoap">
+                    Primer jabón
+                  </label>
+
+                  <select id="firstPackSoap">
+                    <option value="">
+                      Selecciona uno
+                    </option>
+
+                    <option value="Rana">
+                      Rana
+                    </option>
+
+                    <option value="Zorro">
+                      Zorro
+                    </option>
+
+                    <option value="Koala">
+                      Koala
+                    </option>
+
+                    <option value="Búho">
+                      Búho
+                    </option>
+
+                    <option value="Mono">
+                      Mono
+                    </option>
+
+                    <option value="Mariposa">
+                      Mariposa
+                    </option>
+
+                    <option value="Serpiente">
+                      Serpiente
+                    </option>
+
+                    <option value="Abeja">
+                      Abeja
+                    </option>
+                  </select>
+
+                </div>
+
+                <div class="pack-field">
+
+                  <label for="secondPackSoap">
+                    Segundo jabón
+                  </label>
+
+                  <select id="secondPackSoap">
+                    <option value="">
+                      Selecciona uno
+                    </option>
+
+                    <option value="Rana">
+                      Rana
+                    </option>
+
+                    <option value="Zorro">
+                      Zorro
+                    </option>
+
+                    <option value="Koala">
+                      Koala
+                    </option>
+
+                    <option value="Búho">
+                      Búho
+                    </option>
+
+                    <option value="Mono">
+                      Mono
+                    </option>
+
+                    <option value="Mariposa">
+                      Mariposa
+                    </option>
+
+                    <option value="Serpiente">
+                      Serpiente
+                    </option>
+
+                    <option value="Abeja">
+                      Abeja
+                    </option>
+                  </select>
+
+                </div>
+
+              </div>
+
+              <div
+                class="pack-summary"
+                id="packSummary"
+              >
+                Todavía no seleccionaste los dos jabones.
+              </div>
+
+              <div class="pack-actions">
+
+                <button
+                  class="btn btn-secondary"
+                  type="button"
+                  id="cancelPackButton"
+                >
+                  Cancelar
+                </button>
+
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  id="addPackButton"
+                  disabled
+                >
+                  Agregar paquete
+                </button>
+
+              </div>
+
+              <p
+                class="pack-error"
+                id="packError"
+                aria-live="polite"
+              ></p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+  <!-- Mensaje final -->
+
+  <section class="products-message">
+
+    <h2>
+      Elige, juega y descubre
+    </h2>
+
+    <p>
+      Cada animalito convierte la hora del baño en una
+      nueva aventura. Elige tu favorito o crea un paquete
+      especial con dos personajes.
+    </p>
+
+  </section>
+
+</main>
+
+<!-- Carrito -->
+
+<div
+  class="cart-modal"
+  id="cartModal"
+  aria-hidden="true"
+>
+
+  <div
+    class="cart-backdrop"
+    data-close-cart
+  ></div>
+
+  <section
+    class="cart-dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="cartTitle"
+  >
+
+    <button
+      class="cart-close"
+      type="button"
+      aria-label="Cerrar carrito"
+      data-close-cart
+    >
+      ×
+    </button>
+
+    <div class="cart-badge">
+      Tu carrito
+    </div>
+
+    <h2 id="cartTitle">
+      Carrito de compra
+    </h2>
+
+    <p class="cart-copy">
+      Revisa tus productos antes de finalizar la compra.
+    </p>
+
+    <div
+      class="cart-items"
+      id="cartItems"
+    ></div>
+
+    <div class="cart-summary">
+
+      <div>
+        <span>
+          Artículos
+        </span>
+
+        <strong id="cartItemsCount">
+          0
+        </strong>
+      </div>
+
+      <div>
+        <span>
+          Total
+        </span>
+
+        <strong id="cartTotal">
+          $0
+        </strong>
+      </div>
+
+    </div>
+
+    <div class="cart-actions">
+
+      <button
+        class="btn btn-secondary"
+        type="button"
+        data-close-cart
+      >
+        Seguir comprando
+      </button>
+
+      <button
+        class="btn btn-primary"
+        type="button"
+        id="checkoutButton"
+      >
+        Finalizar compra
+      </button>
+
+    </div>
+
+  </section>
+
+</div>
+
+<footer>
+  <p>
+    © 2026 PAPOIS BUBBLE | Todos los derechos reservados
+  </p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  const cartModal =
+    document.getElementById("cartModal");
+
+  const cartItemsContainer =
+    document.getElementById("cartItems");
+
+  const cartCount =
+    document.getElementById("cartCount");
+
+  const cartItemsCount =
+    document.getElementById("cartItemsCount");
+
+  const cartTotal =
+    document.getElementById("cartTotal");
+
+  const checkoutButton =
+    document.getElementById("checkoutButton");
+
+  const openCartButton =
+    document.getElementById("openCartButton");
+
+  const addButtons =
+    document.querySelectorAll(".product-add");
+
+  const closeCartButtons =
+    document.querySelectorAll("[data-close-cart]");
+
+  const openPackSelector =
+    document.getElementById("openPackSelector");
+
+  const packSelector =
+    document.getElementById("packSelector");
+
+  const firstPackSoap =
+    document.getElementById("firstPackSoap");
+
+  const secondPackSoap =
+    document.getElementById("secondPackSoap");
+
+  const packSummary =
+    document.getElementById("packSummary");
+
+  const packError =
+    document.getElementById("packError");
+
+  const addPackButton =
+    document.getElementById("addPackButton");
+
+  const cancelPackButton =
+    document.getElementById("cancelPackButton");
+
+  const cart = [];
+
+
+  function formatCurrency(value) {
+    return value.toLocaleString("es-MX", {
+      style: "currency",
+      currency: "MXN",
+      minimumFractionDigits: 0
+    });
+  }
+
+
+  function openCart() {
+    cartModal.classList.add("is-open");
+
+    cartModal.setAttribute(
+      "aria-hidden",
+      "false"
+    );
+
+    document.body.classList.add("cart-open");
+  }
+
+
+  function closeCart() {
+    cartModal.classList.remove("is-open");
+
+    cartModal.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+    document.body.classList.remove("cart-open");
+  }
+
+
+  function renderCart() {
+    const itemCount = cart.reduce(
+      (total, item) =>
+        total + item.quantity,
+      0
+    );
+
+    const total = cart.reduce(
+      (sum, item) =>
+        sum + item.price * item.quantity,
+      0
+    );
+
+    cartCount.textContent =
+      String(itemCount);
+
+    cartItemsCount.textContent =
+      String(itemCount);
+
+    cartTotal.textContent =
+      formatCurrency(total);
+
+    openCartButton.classList.toggle(
+      "has-items",
+      itemCount > 0
+    );
+
+    if (cart.length === 0) {
+      cartItemsContainer.innerHTML = `
+        <div class="cart-empty">
+          Todavía no agregaste productos.
+        </div>
+      `;
+
+      return;
+    }
+
+    cartItemsContainer.innerHTML = cart
+      .map((item, index) => {
+        const description = item.description
+          ? `<p>${item.description}</p>`
+          : "";
+
+        return `
+          <article class="cart-item">
+
+            <div class="cart-item-info">
+              <strong>${item.name}</strong>
+
+              ${description}
+
+              <p>
+                ${formatCurrency(item.price)} cada uno
+              </p>
+            </div>
+
+            <div class="cart-item-controls">
+
+              <button
+                class="cart-step"
+                type="button"
+                data-decrease="${index}"
+                aria-label="Disminuir cantidad"
+              >
+                −
+              </button>
+
+              <span>
+                ${item.quantity}
+              </span>
+
+              <button
+                class="cart-step"
+                type="button"
+                data-increase="${index}"
+                aria-label="Aumentar cantidad"
+              >
+                +
+              </button>
+
+              <button
+                class="cart-remove"
+                type="button"
+                data-remove="${index}"
+              >
+                Quitar
+              </button>
+
+            </div>
+
+          </article>
+        `;
+      })
+      .join("");
+  }
+
+
+  function showAddedMessage(productName) {
+    Swal.fire({
+      title: "Agregado al carrito",
+      text: `${productName} se agregó correctamente.`,
+      icon: "success",
+      confirmButtonText: "Ver carrito",
+      showCancelButton: true,
+      cancelButtonText: "Seguir comprando",
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        openCart();
+      }
+    });
+  }
+
+
+  function addToCart(
+    name,
+    price,
+    description = ""
+  ) {
+    const existingItem = cart.find(
+      (item) =>
+        item.name === name &&
+        item.description === description
+    );
+
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      cart.push({
+        name,
+        price,
+        quantity: 1,
+        description
+      });
+    }
+
+    renderCart();
+    showAddedMessage(name);
+  }
+
+
+  addButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      addToCart(
+        button.dataset.product,
+        Number(button.dataset.price)
+      );
+    });
+  });
+
+
+  openCartButton.addEventListener(
+    "click",
+    openCart
+  );
+
+
+  closeCartButtons.forEach((button) => {
+    button.addEventListener(
+      "click",
+      closeCart
+    );
+  });
+
+
+  cartItemsContainer.addEventListener(
+    "click",
+    (event) => {
+      const increaseIndex =
+        event.target.dataset.increase;
+
+      const decreaseIndex =
+        event.target.dataset.decrease;
+
+      const removeIndex =
+        event.target.dataset.remove;
+
+      if (increaseIndex !== undefined) {
+        cart[
+          Number(increaseIndex)
+        ].quantity += 1;
+
+        renderCart();
+      }
+
+      if (decreaseIndex !== undefined) {
+        const index =
+          Number(decreaseIndex);
+
+        cart[index].quantity -= 1;
+
+        if (cart[index].quantity <= 0) {
+          cart.splice(index, 1);
+        }
+
+        renderCart();
+      }
+
+      if (removeIndex !== undefined) {
+        cart.splice(
+          Number(removeIndex),
+          1
+        );
+
+        renderCart();
+      }
+    }
+  );
+
+
+  function updatePackSelection() {
+    const firstSoap =
+      firstPackSoap.value;
+
+    const secondSoap =
+      secondPackSoap.value;
+
+    const hasTwoSelections =
+      firstSoap !== "" &&
+      secondSoap !== "";
+
+    addPackButton.disabled =
+      !hasTwoSelections;
+
+    packError.textContent = "";
+
+    if (!firstSoap && !secondSoap) {
+      packSummary.textContent =
+        "Todavía no seleccionaste los dos jabones.";
+
+      return;
+    }
+
+    if (firstSoap && !secondSoap) {
+      packSummary.innerHTML =
+        `<strong>Primer jabón:</strong> ${firstSoap}. Falta elegir el segundo.`;
+
+      return;
+    }
+
+    if (!firstSoap && secondSoap) {
+      packSummary.innerHTML =
+        `<strong>Segundo jabón:</strong> ${secondSoap}. Falta elegir el primero.`;
+
+      return;
+    }
+
+    packSummary.innerHTML =
+      `<strong>Tu paquete:</strong> ${firstSoap} y ${secondSoap}.`;
+  }
+
+
+  openPackSelector.addEventListener(
+    "click",
+    () => {
+      const isOpen =
+        packSelector.classList.toggle(
+          "is-open"
+        );
+
+      openPackSelector.setAttribute(
+        "aria-expanded",
+        String(isOpen)
+      );
+
+      openPackSelector.textContent =
+        isOpen
+          ? "Cerrar selección"
+          : "Elegir jabones";
+    }
+  );
+
+
+  firstPackSoap.addEventListener(
+    "change",
+    updatePackSelection
+  );
+
+
+  secondPackSoap.addEventListener(
+    "change",
+    updatePackSelection
+  );
+
+
+  addPackButton.addEventListener(
+    "click",
+    () => {
+      const firstSoap =
+        firstPackSoap.value;
+
+      const secondSoap =
+        secondPackSoap.value;
+
+      if (!firstSoap || !secondSoap) {
+        packError.textContent =
+          "Selecciona los dos jabones del paquete.";
+
+        return;
+      }
+
+      const description =
+        `Incluye: ${firstSoap} y ${secondSoap}`;
+
+      addToCart(
+        "Paquete de 2 jabones",
+        120,
+        description
+      );
+
+      resetPackSelector();
+    }
+  );
+
+
+  cancelPackButton.addEventListener(
+    "click",
+    resetPackSelector
+  );
+
+
+  function resetPackSelector() {
+    firstPackSoap.value = "";
+    secondPackSoap.value = "";
+
+    packSummary.textContent =
+      "Todavía no seleccionaste los dos jabones.";
+
+    packError.textContent = "";
+
+    addPackButton.disabled = true;
+
+    packSelector.classList.remove(
+      "is-open"
+    );
+
+    openPackSelector.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
+    openPackSelector.textContent =
+      "Elegir jabones";
+  }
+
+
+  checkoutButton.addEventListener(
+    "click",
+    () => {
+      if (cart.length === 0) {
+        Swal.fire({
+          title: "Tu carrito está vacío",
+          text:
+            "Agrega al menos un producto para finalizar la compra.",
+          icon: "info",
+          confirmButtonText: "Entendido"
+        });
+
+        return;
+      }
+
+      const itemCount = cart.reduce(
+        (total, item) =>
+          total + item.quantity,
+        0
+      );
+
+      const total = cart.reduce(
+        (sum, item) =>
+          sum + item.price * item.quantity,
+        0
+      );
+
+      Swal.fire({
+        title: "Compra finalizada",
+        html: `
+          <p>
+            Tu compra de
+            <strong>${itemCount}</strong>
+            artículos fue realizada correctamente.
+          </p>
+
+          <p>
+            Total:
+            <strong>${formatCurrency(total)}</strong>
+          </p>
+        `,
+        icon: "success",
+        confirmButtonText: "Aceptar"
+      });
+
+      cart.length = 0;
+
+      renderCart();
+      closeCart();
+    }
+  );
+
+
+  document.addEventListener(
+    "keydown",
+    (event) => {
+      if (
+        event.key === "Escape" &&
+        cartModal.classList.contains(
+          "is-open"
+        )
+      ) {
+        closeCart();
+      }
+    }
+  );
+
+
+  renderCart();
+  updatePackSelection();
+</script>
+
+</body>
+</html>
