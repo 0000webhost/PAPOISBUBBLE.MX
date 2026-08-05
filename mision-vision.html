@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>PAPOIS BUBBLE | Misión y Visión</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* =========================
+       PORTADA
+       ========================= */
+
+    .purpose-hero {
+      position: relative;
+      width: min(1180px, calc(100% - 32px));
+      margin: 28px auto 0;
+      padding: 70px 30px;
+      overflow: hidden;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 32px;
+      background:
+        radial-gradient(
+          circle at 12% 24%,
+          rgba(255, 255, 255, 0.4) 0 26px,
+          transparent 28px
+        ),
+        radial-gradient(
+          circle at 88% 20%,
+          rgba(255, 255, 255, 0.28) 0 45px,
+          transparent 47px
+        ),
+        radial-gradient(
+          circle at 80% 82%,
+          rgba(255, 255, 255, 0.2) 0 20px,
+          transparent 22px
+        ),
+        linear-gradient(
+          135deg,
+          #3a8dde,
+          #73b9f2
+        );
+      box-shadow: 0 18px 42px rgba(36, 80, 102, 0.14);
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .purpose-hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .purpose-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      padding: 8px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 800;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .purpose-hero h1 {
+      margin: 0 0 16px;
+      color: #ffffff;
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
+      line-height: 1.05;
+    }
+
+    .purpose-hero p {
+      max-width: 720px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 1.08rem;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       MISIÓN Y VISIÓN
+       ========================= */
+
+    .purpose-section {
+      width: min(1180px, calc(100% - 32px));
+      margin: 28px auto 0;
+      padding: 48px 40px;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 32px;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 18px 42px rgba(36, 80, 102, 0.12);
+    }
+
+    .purpose-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .purpose-card {
+      position: relative;
+      min-width: 0;
+      overflow: hidden;
+      padding: 34px;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 26px;
+      background: #ffffff;
+      box-shadow: 0 14px 30px rgba(36, 80, 102, 0.09);
+      text-align: left;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .purpose-card:hover {
+      box-shadow: 0 18px 36px rgba(36, 80, 102, 0.14);
+      transform: translateY(-6px);
+    }
+
+    .purpose-card::after {
+      position: absolute;
+      right: -35px;
+      bottom: -35px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      content: "";
+      opacity: 0.16;
+    }
+
+    .mission-card::after {
+      background: #3a8dde;
+    }
+
+    .vision-card::after {
+      background: #8cc63f;
+    }
+
+    .purpose-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 72px;
+      height: 72px;
+      margin-bottom: 20px;
+      border-radius: 22px;
+      font-size: 2rem;
+    }
+
+    .mission-card .purpose-icon {
+      background: #eaf4ff;
+    }
+
+    .vision-card .purpose-icon {
+      background: #eff9e7;
+    }
+
+    .purpose-card h2 {
+      margin: 0 0 14px;
+      color: #245066;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+    }
+
+    .purpose-card p {
+      margin: 0;
+      color: #4f6f7f;
+      font-size: 1.03rem;
+      line-height: 1.75;
+    }
+
+    /* =========================
+       VALORES
+       ========================= */
+
+    .values-section {
+      width: min(1180px, calc(100% - 32px));
+      margin: 28px auto 0;
+      padding: 50px 40px;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 32px;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.96),
+        rgba(245, 251, 255, 0.94)
+      );
+      box-shadow: 0 18px 42px rgba(36, 80, 102, 0.12);
+      text-align: center;
+    }
+
+    .values-section h2 {
+      margin: 0 0 12px;
+      color: #245066;
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    .values-description {
+      max-width: 740px;
+      margin: 0 auto 34px;
+      color: #4f6f7f;
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .value-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 0;
+      padding: 28px 22px;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 24px;
+      background: #ffffff;
+      box-shadow: 0 12px 28px rgba(36, 80, 102, 0.08);
+      text-align: center;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .value-card:hover {
+      box-shadow: 0 18px 34px rgba(36, 80, 102, 0.13);
+      transform: translateY(-6px);
+    }
+
+    .value-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 76px;
+      height: 76px;
+      margin-bottom: 18px;
+      border-radius: 50%;
+      font-size: 2.1rem;
+    }
+
+    .value-card:nth-child(1) .value-icon {
+      background: #eaf4ff;
+    }
+
+    .value-card:nth-child(2) .value-icon {
+      background: #eff9e7;
+    }
+
+    .value-card:nth-child(3) .value-icon {
+      background: #fff4df;
+    }
+
+    .value-card:nth-child(4) .value-icon {
+      background: #ffeaf7;
+    }
+
+    .value-card h3 {
+      margin: 0 0 10px;
+      color: #ff6b6b;
+      font-size: 1.3rem;
+    }
+
+    .value-card p {
+      margin: 0;
+      color: #4f6f7f;
+      line-height: 1.6;
+    }
+
+    /* =========================
+       COMPROMISO
+       ========================= */
+
+    .commitment-section {
+      width: min(1180px, calc(100% - 32px));
+      margin: 28px auto 0;
+      padding: 46px 30px;
+      border-radius: 32px;
+      background:
+        radial-gradient(
+          circle at 15% 22%,
+          rgba(255, 255, 255, 0.22) 0 24px,
+          transparent 26px
+        ),
+        radial-gradient(
+          circle at 88% 75%,
+          rgba(255, 255, 255, 0.18) 0 38px,
+          transparent 40px
+        ),
+        linear-gradient(
+          135deg,
+          #8cc63f,
+          #64b83a
+        );
+      box-shadow: 0 18px 42px rgba(36, 80, 102, 0.12);
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .commitment-section h2 {
+      margin: 0 0 14px;
+      color: #ffffff;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+    }
+
+    .commitment-section p {
+      max-width: 760px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       TABLET
+       ========================= */
+
+    @media (max-width: 950px) {
+      .values-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .purpose-hero,
+      .purpose-section,
+      .values-section,
+      .commitment-section {
+        width: calc(100% - 24px);
+        margin-top: 18px;
+        border-radius: 24px;
+      }
+
+      .purpose-hero {
+        padding: 48px 20px;
+      }
+
+      .purpose-hero h1 {
+        font-size: clamp(2.2rem, 11vw, 3.2rem);
+      }
+
+      .purpose-hero p {
+        font-size: 1rem;
+      }
+
+      .purpose-section,
+      .values-section {
+        padding: 36px 20px;
+      }
+
+      .purpose-grid,
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .purpose-card,
+      .value-card {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .purpose-card:hover,
+      .value-card:hover {
+        transform: none;
+      }
+
+      .commitment-section {
+        padding: 36px 20px;
+      }
+    }
+
+    /* =========================
+       CELULARES PEQUEÑOS
+       ========================= */
+
+    @media (max-width: 420px) {
+      .purpose-hero,
+      .purpose-section,
+      .values-section,
+      .commitment-section {
+        width: calc(100% - 16px);
+      }
+
+      .purpose-hero {
+        padding: 42px 16px;
+      }
+
+      .purpose-section,
+      .values-section {
+        padding: 30px 14px;
+      }
+
+      .purpose-card {
+        padding: 26px 20px;
+        border-radius: 20px;
+      }
+
+      .value-card {
+        padding: 24px 18px;
+        border-radius: 20px;
+      }
+
+      .commitment-section {
+        padding: 32px 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+
+    <div class="logo">
+      PAPOIS BUBBLE
+    </div>
+
+    <nav>
+      <a href="index.html">
+        Inicio
+      </a>
+
+      <a href="productos.html">
+        Productos
+      </a>
+
+      <a href="nosotros.html">
+        Nosotros
+      </a>
+
+      <a
+        href="mision-vision.html"
+        class="active"
+      >
+        Misión y Visión
+      </a>
+
+      <a href="aprende.html">
+        Aprende
+      </a>
+
+      <a href="contacto.html">
+        Contacto
+      </a>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+  <!-- Portada -->
+
+  <section class="purpose-hero">
+
+    <div class="purpose-hero-content">
+
+      <div class="purpose-badge">
+        Nuestra razón de ser
+      </div>
+
+      <h1>
+        Misión y Visión
+      </h1>
+
+      <p>
+        En PAPOIS BUBBLE queremos transformar la hora del
+        baño en una experiencia que combine higiene,
+        diversión, aprendizaje y momentos especiales
+        en familia.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- Misión y visión -->
+
+  <section class="purpose-section">
+
+    <div class="purpose-grid">
+
+      <article class="purpose-card mission-card">
+
+        <div
+          class="purpose-icon"
+          aria-hidden="true"
+        >
+          💙
+        </div>
+
+        <h2>
+          Misión
+        </h2>
+
+        <p>
+          Crear jabones infantiles con formas de animales
+          que transformen la hora del baño en una experiencia
+          segura, divertida y educativa. Buscamos promover
+          buenos hábitos de higiene, despertar la curiosidad
+          por la naturaleza y fortalecer el vínculo entre
+          padres e hijos.
+        </p>
+
+      </article>
+
+      <article class="purpose-card vision-card">
+
+        <div
+          class="purpose-icon"
+          aria-hidden="true"
+        >
+          🌟
+        </div>
+
+        <h2>
+          Visión
+        </h2>
+
+        <p>
+          Ser una marca infantil reconocida por convertir
+          el cuidado personal en una aventura llena de
+          imaginación y aprendizaje, acompañando a las
+          familias con productos suaves, creativos y
+          pensados para el bienestar de los niños.
+        </p>
+
+      </article>
+
+    </div>
+
+  </section>
+
+  <!-- Valores -->
+
+  <section class="values-section">
+
+    <h2>
+      Nuestros valores
+    </h2>
+
+    <p class="values-description">
+      Estos valores guían cada producto, personaje y
+      experiencia que creamos en PAPOIS BUBBLE.
+    </p>
+
+    <div class="values-grid">
+
+      <article class="value-card">
+
+        <div
+          class="value-icon"
+          aria-hidden="true"
+        >
+          📚
+        </div>
+
+        <h3>
+          Aprendizaje
+        </h3>
+
+        <p>
+          Compartimos información sobre los animales,
+          la higiene y la naturaleza de una forma sencilla
+          y divertida.
+        </p>
+
+      </article>
+
+      <article class="value-card">
+
+        <div
+          class="value-icon"
+          aria-hidden="true"
+        >
+          🌱
+        </div>
+
+        <h3>
+          Cuidado
+        </h3>
+
+        <p>
+          Pensamos en el bienestar de los niños, sus
+          familias y el entorno en cada una de nuestras
+          decisiones.
+        </p>
+
+      </article>
+
+      <article class="value-card">
+
+        <div
+          class="value-icon"
+          aria-hidden="true"
+        >
+          ✨
+        </div>
+
+        <h3>
+          Calidad
+        </h3>
+
+        <p>
+          Buscamos ofrecer productos suaves, seguros,
+          atractivos y pensados especialmente para la
+          piel infantil.
+        </p>
+
+      </article>
+
+      <article class="value-card">
+
+        <div
+          class="value-icon"
+          aria-hidden="true"
+        >
+          🫧
+        </div>
+
+        <h3>
+          Diversión
+        </h3>
+
+        <p>
+          Convertimos una rutina diaria en un momento
+          de juego, imaginación y nuevas aventuras.
+        </p>
+
+      </article>
+
+    </div>
+
+  </section>
+
+  <!-- Compromiso -->
+
+  <section class="commitment-section">
+
+    <h2>
+      Acompañamos cada descubrimiento
+    </h2>
+
+    <p>
+      PAPOIS BUBBLE no es solamente un jabón infantil.
+      Es una experiencia creada para cuidar, enseñar y
+      hacer que cada baño se convierta en un momento
+      especial para compartir.
+    </p>
+
+  </section>
+
+</main>
+
+<footer>
+  <p>
+    © 2026 PAPOIS BUBBLE | Todos los derechos reservados
+  </p>
+</footer>
+
+</body>
+</html>
