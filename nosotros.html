@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>PAPOIS BUBBLE | Nosotros</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* =========================
+       PORTADA
+       ========================= */
+
+    .about-hero {
+      position: relative;
+      width: min(1180px, calc(100% - 32px));
+      margin: 28px auto 0;
+      padding: 70px 30px;
+      overflow: hidden;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 32px;
+      background:
+        radial-gradient(
+          circle at 12% 24%,
+          rgba(255, 255, 255, 0.42) 0 26px,
+          transparent 28px
+        ),
+        radial-gradient(
+          circle at 88% 18%,
+          rgba(255, 255, 255, 0.28) 0 44px,
+          transparent 46px
+        ),
+        radial-gradient(
+          circle at 78% 82%,
+          rgba(255, 255, 255, 0.2) 0 20px,
+          transparent 22px
+        ),
+        linear-gradient(
+          135deg,
+          #3a8dde,
+          #73b9f2
+        );
+      box-shadow: 0 18px 42px rgba(36, 80, 102, 0.14);
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .about-hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .about-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      padding: 8px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 800;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .about-hero h1 {
+      margin: 0 0 16px;
+      color: #ffffff;
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
+      line-height: 1.05;
+    }
+
+    .about-hero p {
+      max-width: 730px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 1.08rem;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       QUIÉNES SOMOS
+       ========================= */
+
+    .about-section {
+      width: min(1180px, calc(100% - 32px));
+      margin: 28px auto 0;
+      padding: 48px 40px;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 32px;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 18px 42px rgba(36, 80, 102, 0.12);
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      align-items: center;
+      gap: 34px;
+    }
+
+    .about-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 360px;
+      overflow: hidden;
+      border-radius: 28px;
+      background:
+        radial-gradient(
+          circle at 22% 20%,
+          rgba(255, 255, 255, 0.45) 0 28px,
+          transparent 30px
+        ),
+        radial-gradient(
+          circle at 82% 72%,
+          rgba(255, 255, 255, 0.3) 0 42px,
+          transparent 44px
+        ),
+        linear-gradient(
+          135deg,
+          #b8ecff,
+          #fff4a3
+        );
+    }
+
+    .about-visual-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 170px;
+      height: 170px;
+      border: 3px solid rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.28);
+      font-size: 5rem;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .about-text {
+      text-align: left;
+    }
+
+    .about-text h2 {
+      margin: 0 0 16px;
+      color: #245066;
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    .about-text p {
+      margin: 0 0 18px;
+      color: #4f6f7f;
+      font-size: 1.04rem;
+      line-height: 1.75;
+    }
+
+    .about-highlight {
+      padding: 18px 20px;
+      border-left: 5px solid #8cc63f;
+      border-radius: 0 18px 18px 0;
+      background: #f1f9e9;
+      color: #466b2e;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    /* =========================
+       QUÉ NOS HACE DIFERENTES
+       ========================= */
+
+    .difference-section {
+      width: min(1180px, calc(100% - 32px));
+      margin: 28px auto 0;
+      padding: 50px 40px;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 32px;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.96),
+        rgba(245, 251, 255, 0.94)
+      );
+      box-shadow: 0 18px 42px rgba(36, 80, 102, 0.12);
+      text-align: center;
+    }
+
+    .difference-section h2 {
+      margin: 0 0 12px;
+      color: #245066;
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    .difference-description {
+      max-width: 740px;
+      margin: 0 auto 34px;
+      color: #4f6f7f;
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+
+    .difference-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .difference-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 0;
+      padding: 30px 24px;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 24px;
+      background: #ffffff;
+      box-shadow: 0 12px 28px rgba(36, 80, 102, 0.08);
+      text-align: center;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .difference-card:hover {
+      box-shadow: 0 18px 34px rgba(36, 80, 102, 0.13);
+      transform: translateY(-6px);
+    }
+
+    .difference-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 78px;
+      height: 78px;
+      margin-bottom: 18px;
+      border-radius: 50%;
+      font-size: 2.2rem;
+    }
+
+    .difference-card:nth-child(1) .difference-icon {
+      background: #eaf4ff;
+    }
+
+    .difference-card:nth-child(2) .difference-icon {
+      background: #ffeaf7;
+    }
+
+    .difference-card:nth-child(3) .difference-icon {
+      background: #eff9e7;
+    }
+
+    .difference-card h3 {
+      margin: 0 0 10px;
+      color: #ff6b6b;
+      font-size: 1.35rem;
+    }
+
+    .difference-card p {
+      margin: 0;
+      color: #4f6f7f;
+      line-height: 1.65;
+    }
+
+    /* =========================
+       OBJETIVOS
+       ========================= */
+
+    .goals-section {
+      width: min(1180px, calc(100% - 32px));
+      margin: 28px auto 0;
+      padding: 50px 40px;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 32px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 18px 42px rgba(36, 80, 102, 0.12);
+      text-align: center;
+    }
+
+    .goals-section h2 {
+      margin: 0 0 12px;
+      color: #245066;
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    .goals-description {
+      max-width: 740px;
+      margin: 0 auto 34px;
+      color: #4f6f7f;
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+
+    .goals-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .goal-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 0;
+      padding: 28px 22px;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 24px;
+      background: #ffffff;
+      box-shadow: 0 12px 28px rgba(36, 80, 102, 0.08);
+      text-align: center;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .goal-card:hover {
+      box-shadow: 0 18px 34px rgba(36, 80, 102, 0.13);
+      transform: translateY(-6px);
+    }
+
+    .goal-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 74px;
+      height: 74px;
+      margin-bottom: 18px;
+      border-radius: 50%;
+      font-size: 2rem;
+    }
+
+    .goal-card:nth-child(1) .goal-icon {
+      background: #eaf4ff;
+    }
+
+    .goal-card:nth-child(2) .goal-icon {
+      background: #fff0dc;
+    }
+
+    .goal-card:nth-child(3) .goal-icon {
+      background: #ffeaf7;
+    }
+
+    .goal-card:nth-child(4) .goal-icon {
+      background: #eff9e7;
+    }
+
+    .goal-card h3 {
+      margin: 0 0 10px;
+      color: #ff6b6b;
+      font-size: 1.3rem;
+    }
+
+    .goal-card p {
+      margin: 0;
+      color: #4f6f7f;
+      line-height: 1.6;
+    }
+
+    /* =========================
+       MENSAJE FINAL
+       ========================= */
+
+    .about-message {
+      width: min(1180px, calc(100% - 32px));
+      margin: 28px auto 0;
+      padding: 46px 30px;
+      border-radius: 32px;
+      background:
+        radial-gradient(
+          circle at 14% 22%,
+          rgba(255, 255, 255, 0.22) 0 24px,
+          transparent 26px
+        ),
+        radial-gradient(
+          circle at 88% 76%,
+          rgba(255, 255, 255, 0.18) 0 38px,
+          transparent 40px
+        ),
+        linear-gradient(
+          135deg,
+          #8cc63f,
+          #64b83a
+        );
+      box-shadow: 0 18px 42px rgba(36, 80, 102, 0.12);
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .about-message h2 {
+      margin: 0 0 14px;
+      color: #ffffff;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+    }
+
+    .about-message p {
+      max-width: 760px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       TABLET
+       ========================= */
+
+    @media (max-width: 950px) {
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+
+      .about-visual {
+        min-height: 300px;
+      }
+
+      .difference-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .difference-card:last-child {
+        grid-column: 1 / -1;
+        width: min(500px, 100%);
+        margin: 0 auto;
+      }
+
+      .goals-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    /* =========================
+       CELULAR
+       ========================= */
+
+    @media (max-width: 760px) {
+      .about-hero,
+      .about-section,
+      .difference-section,
+      .goals-section,
+      .about-message {
+        width: calc(100% - 24px);
+        margin-top: 18px;
+        border-radius: 24px;
+      }
+
+      .about-hero {
+        padding: 48px 20px;
+      }
+
+      .about-hero h1 {
+        font-size: clamp(2.2rem, 11vw, 3.2rem);
+      }
+
+      .about-hero p {
+        font-size: 1rem;
+      }
+
+      .about-section,
+      .difference-section,
+      .goals-section {
+        padding: 36px 20px;
+      }
+
+      .about-visual {
+        min-height: 260px;
+      }
+
+      .about-visual-icon {
+        width: 140px;
+        height: 140px;
+        font-size: 4rem;
+      }
+
+      .about-text {
+        text-align: center;
+      }
+
+      .about-highlight {
+        text-align: left;
+      }
+
+      .difference-grid,
+      .goals-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .difference-card,
+      .goal-card,
+      .difference-card:last-child {
+        grid-column: auto;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .difference-card:hover,
+      .goal-card:hover {
+        transform: none;
+      }
+
+      .about-message {
+        padding: 36px 20px;
+      }
+    }
+
+    /* =========================
+       CELULARES PEQUEÑOS
+       ========================= */
+
+    @media (max-width: 420px) {
+      .about-hero,
+      .about-section,
+      .difference-section,
+      .goals-section,
+      .about-message {
+        width: calc(100% - 16px);
+      }
+
+      .about-hero {
+        padding: 42px 16px;
+      }
+
+      .about-section,
+      .difference-section,
+      .goals-section {
+        padding: 30px 14px;
+      }
+
+      .about-visual {
+        min-height: 230px;
+        border-radius: 20px;
+      }
+
+      .about-visual-icon {
+        width: 120px;
+        height: 120px;
+        font-size: 3.4rem;
+      }
+
+      .difference-card,
+      .goal-card {
+        padding: 24px 18px;
+        border-radius: 20px;
+      }
+
+      .about-message {
+        padding: 32px 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+
+    <div class="logo">
+      PAPOIS BUBBLE
+    </div>
+
+    <nav>
+      <a href="index.html">
+        Inicio
+      </a>
+
+      <a href="productos.html">
+        Productos
+      </a>
+
+      <a
+        href="nosotros.html"
+        class="active"
+      >
+        Nosotros
+      </a>
+
+      <a href="mision-vision.html">
+        Misión y Visión
+      </a>
+
+      <a href="aprende.html">
+        Aprende
+      </a>
+
+      <a href="contacto.html">
+        Contacto
+      </a>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+  <!-- Portada -->
+
+  <section class="about-hero">
+
+    <div class="about-hero-content">
+
+      <div class="about-badge">
+        Conoce nuestra historia
+      </div>
+
+      <h1>
+        ¿Quiénes somos?
+      </h1>
+
+      <p>
+        Somos una marca de jabones infantiles que busca
+        transformar la hora del baño en una experiencia
+        de cuidado, diversión, imaginación y aprendizaje.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- Quiénes somos -->
+
+  <section class="about-section">
+
+    <div class="about-content">
+
+      <div
+        class="about-visual"
+        aria-hidden="true"
+      >
+
+        <div class="about-visual-icon">
+          🫧
+        </div>
+
+      </div>
+
+      <div class="about-text">
+
+        <h2>
+          Somos PAPOIS BUBBLE
+        </h2>
+
+        <p>
+          PAPOIS BUBBLE es una marca de jabones infantiles
+          con forma de animalitos, creada para hacer que la
+          hora del baño deje de sentirse como una obligación
+          y se convierta en una nueva aventura.
+        </p>
+
+        <p>
+          Nuestros productos están pensados para cuidar la
+          piel de los niños mientras despiertan su imaginación,
+          fortalecen sus hábitos de higiene y les permiten
+          aprender sobre diferentes animales.
+        </p>
+
+        <p>
+          Cada jabón incluye una tarjeta coleccionable con
+          información y datos curiosos, para que la experiencia
+          continúe incluso después del baño.
+        </p>
+
+        <div class="about-highlight">
+          En PAPOIS BUBBLE unimos higiene, diversión y
+          aprendizaje en un mismo producto.
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Diferencias -->
+
+  <section class="difference-section">
+
+    <h2>
+      ¿Qué nos hace diferentes?
+    </h2>
+
+    <p class="difference-description">
+      No ofrecemos solamente un jabón infantil, sino una
+      experiencia pensada para niños y familias.
+    </p>
+
+    <div class="difference-grid">
+
+      <article class="difference-card">
+
+        <div
+          class="difference-icon"
+          aria-hidden="true"
+        >
+          🐾
+        </div>
+
+        <h3>
+          Formas divertidas
+        </h3>
+
+        <p>
+          Nuestros jabones tienen forma de animalitos
+          para convertir el baño en un momento de juego
+          e imaginación.
+        </p>
+
+      </article>
+
+      <article class="difference-card">
+
+        <div
+          class="difference-icon"
+          aria-hidden="true"
+        >
+          📚
+        </div>
+
+        <h3>
+          Aprendizaje
+        </h3>
+
+        <p>
+          Cada producto incluye una tarjeta coleccionable
+          con información sencilla y datos curiosos sobre
+          los animales.
+        </p>
+
+      </article>
+
+      <article class="difference-card">
+
+        <div
+          class="difference-icon"
+          aria-hidden="true"
+        >
+          💙
+        </div>
+
+        <h3>
+          Momentos en familia
+        </h3>
+
+        <p>
+          Buscamos que padres e hijos compartan una rutina
+          diaria de una manera más cercana, divertida y
+          especial.
+        </p>
+
+      </article>
+
+    </div>
+
+  </section>
+
+  <!-- Objetivos -->
+
+  <section class="goals-section">
+
+    <h2>
+      Objetivos de la marca
+    </h2>
+
+    <p class="goals-description">
+      Estos objetivos representan lo que queremos lograr
+      con cada producto y cada experiencia.
+    </p>
+
+    <div class="goals-grid">
+
+      <article class="goal-card">
+
+        <div
+          class="goal-icon"
+          aria-hidden="true"
+        >
+          🧼
+        </div>
+
+        <h3>
+          Hábitos
+        </h3>
+
+        <p>
+          Fomentar rutinas de higiene desde una edad
+          temprana de una forma agradable y divertida.
+        </p>
+
+      </article>
+
+      <article class="goal-card">
+
+        <div
+          class="goal-icon"
+          aria-hidden="true"
+        >
+          ✨
+        </div>
+
+        <h3>
+          Cuidado
+        </h3>
+
+        <p>
+          Promover el cuidado personal y la limpieza
+          diaria mediante una experiencia pensada para
+          los niños.
+        </p>
+
+      </article>
+
+      <article class="goal-card">
+
+        <div
+          class="goal-icon"
+          aria-hidden="true"
+        >
+          🎨
+        </div>
+
+        <h3>
+          Diseño
+        </h3>
+
+        <p>
+          Crear productos atractivos, suaves y creativos
+          que llamen la atención de los niños.
+        </p>
+
+      </article>
+
+      <article class="goal-card">
+
+        <div
+          class="goal-icon"
+          aria-hidden="true"
+        >
+          🌱
+        </div>
+
+        <h3>
+          Responsabilidad
+        </h3>
+
+        <p>
+          Buscar opciones de empaque responsables y
+          promover el respeto por la naturaleza.
+        </p>
+
+      </article>
+
+    </div>
+
+  </section>
+
+  <!-- Mensaje final -->
+
+  <section class="about-message">
+
+    <h2>
+      Cuidar también es acompañar
+    </h2>
+
+    <p>
+      Queremos estar presentes mientras los niños juegan,
+      aprenden y descubren el mundo. Por eso convertimos
+      cada baño en una aventura llena de espuma y momentos
+      especiales.
+    </p>
+
+  </section>
+
+</main>
+
+<footer>
+  <p>
+    © 2026 PAPOIS BUBBLE | Todos los derechos reservados
+  </p>
+</footer>
+
+</body>
+</html>
