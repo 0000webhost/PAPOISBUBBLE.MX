@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>PAPOIS BUBBLE | Adivina el animal</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* =========================
+       PÁGINA DEL JUEGO
+       ========================= */
+
+    .guess-page {
+      width: min(1180px, calc(100% - 32px));
+      min-height: calc(100vh - 180px);
+      margin: 28px auto 0;
+      padding: 54px 30px;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 32px;
+      background:
+        radial-gradient(
+          circle at 10% 15%,
+          rgba(246, 139, 31, 0.12) 0 28px,
+          transparent 30px
+        ),
+        radial-gradient(
+          circle at 92% 18%,
+          rgba(58, 141, 222, 0.1) 0 42px,
+          transparent 44px
+        ),
+        linear-gradient(
+          180deg,
+          #fff8ec,
+          #ffffff
+        );
+      box-shadow: 0 18px 42px rgba(36, 80, 102, 0.12);
+      text-align: center;
+    }
+
+    .guess-intro {
+      max-width: 720px;
+      margin: 0 auto 28px;
+    }
+
+    .guess-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      padding: 8px 15px;
+      border-radius: 999px;
+      background: #fff0dc;
+      color: #d76e00;
+      font-size: 0.92rem;
+      font-weight: 800;
+    }
+
+    .guess-page h1 {
+      margin: 0 0 12px;
+      color: #f68b1f;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1.05;
+    }
+
+    .guess-intro > p {
+      margin: 0;
+      color: #4f6f7f;
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+
+    /* =========================
+       TARJETA DEL JUEGO
+       ========================= */
+
+    .guess-card {
+      position: relative;
+      max-width: 720px;
+      margin: 30px auto 0;
+      padding: 36px;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 14px 34px rgba(36, 80, 102, 0.1);
+    }
+
+    .progress-area {
+      margin-bottom: 22px;
+    }
+
+    .clue-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: #fff0dc;
+      color: #d76e00;
+      font-size: 0.92rem;
+      font-weight: 800;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 10px;
+      margin-top: 16px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #f4e4cf;
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(
+        90deg,
+        #f68b1f,
+        #ffd166
+      );
+      transition: width 0.3s ease;
+    }
+
+    .clue-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 78px;
+      height: 78px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      background: linear-gradient(
+        135deg,
+        #fff0dc,
+        #eaf4ff
+      );
+      font-size: 2.3rem;
+    }
+
+    .clue-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 120px;
+      margin: 0 0 26px;
+      color: #245066;
+      font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+      font-weight: 700;
+      line-height: 1.55;
+    }
+
+    /* =========================
+       OPCIONES
+       ========================= */
+
+    .guess-options {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .guess-option {
+      min-height: 54px;
+      padding: 14px 16px;
+      border: 2px solid rgba(246, 139, 31, 0.65);
+      border-radius: 17px;
+      background: #ffffff;
+      color: #245066;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 800;
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .guess-option:hover,
+    .guess-option:focus-visible {
+      border-color: #f68b1f;
+      outline: none;
+      background: #fff7eb;
+      box-shadow: 0 8px 20px rgba(246, 139, 31, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .guess-option.correct {
+      border-color: #8cc63f;
+      background: #eef9e6;
+      color: #477624;
+    }
+
+    .guess-option.incorrect {
+      border-color: #d9534f;
+      background: #fff0ef;
+      color: #a73531;
+    }
+
+    .guess-option:disabled {
+      cursor: default;
+      opacity: 1;
+      transform: none;
+    }
+
+    /* =========================
+       RESULTADO Y BOTONES
+       ========================= */
+
+    .guess-result {
+      min-height: 30px;
+      margin: 20px 0 0;
+      font-weight: 800;
+      line-height: 1.5;
+    }
+
+    .guess-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .next-button,
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 13px 24px;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 800;
+      text-decoration: none;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .next-button {
+      display: none;
+      background: linear-gradient(
+        135deg,
+        #3a8dde,
+        #168aad
+      );
+      color: #ffffff;
+      box-shadow: 0 10px 22px rgba(58, 141, 222, 0.2);
+    }
+
+    .back-button {
+      background: linear-gradient(
+        135deg,
+        #8cc63f,
+        #64b83a
+      );
+      color: #ffffff;
+      box-shadow: 0 10px 22px rgba(140, 198, 63, 0.2);
+    }
+
+    .next-button:hover,
+    .next-button:focus-visible,
+    .back-button:hover,
+    .back-button:focus-visible {
+      outline: none;
+      transform: translateY(-2px);
+    }
+
+    .score-box {
+      display: none;
+      margin-top: 22px;
+      padding: 22px;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 20px;
+      background: linear-gradient(
+        135deg,
+        rgba(184, 236, 255, 0.28),
+        rgba(255, 244, 163, 0.32)
+      );
+    }
+
+    .score-box.is-visible {
+      display: block;
+    }
+
+    .score-box strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #168aad;
+      font-size: 1.45rem;
+    }
+
+    .score-box p {
+      margin: 0;
+      color: #4f6f7f;
+    }
+
+    /* =========================
+       TABLET
+       ========================= */
+
+    @media (max-width: 760px) {
+      .guess-page {
+        width: calc(100% - 24px);
+        min-height: auto;
+        margin-top: 18px;
+        padding: 42px 20px;
+        border-radius: 24px;
+      }
+
+      .guess-card {
+        padding: 28px 22px;
+        border-radius: 22px;
+      }
+
+      .clue-text {
+        min-height: 100px;
+      }
+
+      .guess-actions {
+        flex-direction: column;
+      }
+
+      .next-button,
+      .back-button {
+        width: 100%;
+      }
+    }
+
+    /* =========================
+       CELULAR
+       ========================= */
+
+    @media (max-width: 550px) {
+      .guess-options {
+        grid-template-columns: 1fr;
+      }
+
+      .guess-page {
+        width: calc(100% - 16px);
+        padding: 36px 14px;
+      }
+
+      .guess-card {
+        padding: 24px 16px;
+      }
+
+      .clue-icon {
+        width: 68px;
+        height: 68px;
+        font-size: 2rem;
+      }
+
+      .clue-text {
+        min-height: 90px;
+        margin-bottom: 22px;
+      }
+
+      .guess-option {
+        min-height: 50px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+
+    <div class="logo">
+      PAPOIS BUBBLE
+    </div>
+
+    <nav>
+      <a href="index.html">
+        Inicio
+      </a>
+
+      <a href="productos.html">
+        Productos
+      </a>
+
+      <a href="nosotros.html">
+        Nosotros
+      </a>
+
+      <a href="mision-vision.html">
+        Misión y Visión
+      </a>
+
+      <a
+        href="aprende.html"
+        class="active"
+      >
+        Aprende
+      </a>
+
+      <a href="contacto.html">
+        Contacto
+      </a>
+    </nav>
+
+  </div>
+</header>
+
+<main class="guess-page">
+
+  <section class="guess-intro">
+
+    <div class="guess-badge">
+      Juego educativo
+    </div>
+
+    <h1>
+      Adivina el animal
+    </h1>
+
+    <p>
+      Lee cada pista, selecciona una respuesta y descubre
+      cuánto sabes sobre los animalitos de PAPOIS BUBBLE.
+    </p>
+
+  </section>
+
+  <section
+    class="guess-card"
+    aria-labelledby="clueText"
+  >
+
+    <div class="progress-area">
+
+      <div
+        class="clue-number"
+        id="clueNumber"
+      >
+        Pregunta 1 de 8
+      </div>
+
+      <div
+        class="progress-bar"
+        aria-hidden="true"
+      >
+        <div
+          class="progress-fill"
+          id="progressFill"
+        ></div>
+      </div>
+
+    </div>
+
+    <div
+      class="clue-icon"
+      aria-hidden="true"
+    >
+      🔍
+    </div>
+
+    <p
+      class="clue-text"
+      id="clueText"
+    ></p>
+
+    <div
+      class="guess-options"
+      id="guessOptions"
+    ></div>
+
+    <p
+      class="guess-result"
+      id="guessResult"
+      aria-live="polite"
+    ></p>
+
+    <div
+      class="score-box"
+      id="scoreBox"
+    >
+
+      <strong id="scoreTitle"></strong>
+
+      <p id="scoreMessage"></p>
+
+    </div>
+
+    <div class="guess-actions">
+
+      <button
+        class="next-button"
+        type="button"
+        id="nextButton"
+      >
+        Siguiente pregunta
+      </button>
+
+      <a
+        href="aprende.html"
+        class="back-button"
+      >
+        Regresar a Aprende
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <p>
+    © 2026 PAPOIS BUBBLE | Todos los derechos reservados
+  </p>
+</footer>
+
+<script>
+  const questions = [
+    {
+      clue:
+        "Soy un anfibio, comienzo mi vida como renacuajo y puedo dar grandes saltos.",
+      answer: "Rana",
+      options: [
+        "Rana",
+        "Koala",
+        "Abeja",
+        "Zorro"
+      ]
+    },
+    {
+      clue:
+        "Puedo dormir hasta 20 horas al día y me alimento de hojas de eucalipto.",
+      answer: "Koala",
+      options: [
+        "Mono",
+        "Koala",
+        "Búho",
+        "Mariposa"
+      ]
+    },
+    {
+      clue:
+        "Ayudo a polinizar flores y vivo junto con otras dentro de una colmena.",
+      answer: "Abeja",
+      options: [
+        "Serpiente",
+        "Rana",
+        "Abeja",
+        "Zorro"
+      ]
+    },
+    {
+      clue:
+        "Puedo volar durante la noche casi sin hacer ruido y tengo una excelente visión.",
+      answer: "Búho",
+      options: [
+        "Búho",
+        "Mariposa",
+        "Abeja",
+        "Mono"
+      ]
+    },
+    {
+      clue:
+        "Comienzo mi vida como una oruga y después paso por una transformación.",
+      answer: "Mariposa",
+      options: [
+        "Zorro",
+        "Rana",
+        "Mariposa",
+        "Koala"
+      ]
+    },
+    {
+      clue:
+        "No tengo patas y me desplazo moviendo mi cuerpo sobre el suelo.",
+      answer: "Serpiente",
+      options: [
+        "Serpiente",
+        "Mono",
+        "Rana",
+        "Búho"
+      ]
+    },
+    {
+      clue:
+        "Soy muy ágil y algunos de mi especie utilizan la cola para agarrarse de las ramas.",
+      answer: "Mono",
+      options: [
+        "Koala",
+        "Zorro",
+        "Mono",
+        "Abeja"
+      ]
+    },
+    {
+      clue:
+        "Tengo muy buen oído, camino de manera silenciosa y poseo una cola grande.",
+      answer: "Zorro",
+      options: [
+        "Búho",
+        "Zorro",
+        "Rana",
+        "Serpiente"
+      ]
+    }
+  ];
+
+  const clueNumber =
+    document.getElementById("clueNumber");
+
+  const clueText =
+    document.getElementById("clueText");
+
+  const guessOptions =
+    document.getElementById("guessOptions");
+
+  const guessResult =
+    document.getElementById("guessResult");
+
+  const nextButton =
+    document.getElementById("nextButton");
+
+  const progressFill =
+    document.getElementById("progressFill");
+
+  const scoreBox =
+    document.getElementById("scoreBox");
+
+  const scoreTitle =
+    document.getElementById("scoreTitle");
+
+  const scoreMessage =
+    document.getElementById("scoreMessage");
+
+  let currentQuestion = 0;
+  let score = 0;
+  let answered = false;
+  let gameFinished = false;
+
+
+  function showQuestion() {
+    answered = false;
+    gameFinished = false;
+
+    const question =
+      questions[currentQuestion];
+
+    const progress =
+      ((currentQuestion + 1) / questions.length) * 100;
+
+    clueNumber.textContent =
+      `Pregunta ${currentQuestion + 1} de ${questions.length}`;
+
+    progressFill.style.width =
+      `${progress}%`;
+
+    clueText.textContent =
+      question.clue;
+
+    guessResult.textContent = "";
+    guessResult.style.color = "";
+
+    scoreBox.classList.remove("is-visible");
+
+    nextButton.style.display = "none";
+    nextButton.textContent =
+      currentQuestion === questions.length - 1
+        ? "Ver resultado"
+        : "Siguiente pregunta";
+
+    guessOptions.innerHTML = "";
+
+    question.options.forEach((option) => {
+      const button =
+        document.createElement("button");
+
+      button.type = "button";
+      button.className = "guess-option";
+      button.textContent = option;
+
+      button.addEventListener("click", () => {
+        checkAnswer(option, button);
+      });
+
+      guessOptions.appendChild(button);
+    });
+  }
+
+
+  function checkAnswer(
+    selectedOption,
+    selectedButton
+  ) {
+    if (answered || gameFinished) {
+      return;
+    }
+
+    answered = true;
+
+    const question =
+      questions[currentQuestion];
+
+    const optionButtons =
+      document.querySelectorAll(".guess-option");
+
+    optionButtons.forEach((button) => {
+      button.disabled = true;
+
+      if (
+        button.textContent === question.answer
+      ) {
+        button.classList.add("correct");
+      }
+    });
+
+    if (selectedOption === question.answer) {
+      score += 1;
+
+      guessResult.textContent =
+        "¡Correcto! Muy bien.";
+
+      guessResult.style.color =
+        "#218838";
+    } else {
+      selectedButton.classList.add("incorrect");
+
+      guessResult.textContent =
+        `La respuesta correcta era: ${question.answer}.`;
+
+      guessResult.style.color =
+        "#c62828";
+    }
+
+    nextButton.style.display =
+      "inline-flex";
+  }
+
+
+  function showFinalResult() {
+    gameFinished = true;
+
+    clueNumber.textContent =
+      "Juego terminado";
+
+    progressFill.style.width =
+      "100%";
+
+    clueText.textContent =
+      `Obtuviste ${score} respuestas correctas de ${questions.length}.`;
+
+    guessOptions.innerHTML = "";
+    guessResult.textContent = "";
+
+    scoreBox.classList.add("is-visible");
+
+    if (score === questions.length) {
+      scoreTitle.textContent =
+        "¡Puntuación perfecta!";
+
+      scoreMessage.textContent =
+        "Conoces muy bien a todos los animalitos de PAPOIS BUBBLE.";
+    } else if (score >= 6) {
+      scoreTitle.textContent =
+        "¡Excelente trabajo!";
+
+      scoreMessage.textContent =
+        "Eres un gran explorador de la naturaleza.";
+    } else if (score >= 4) {
+      scoreTitle.textContent =
+        "¡Buen trabajo!";
+
+      scoreMessage.textContent =
+        "Sabes mucho, pero todavía puedes descubrir más datos curiosos.";
+    } else {
+      scoreTitle.textContent =
+        "Sigue aprendiendo";
+
+      scoreMessage.textContent =
+        "Regresa a la sección Aprende, conoce a los animalitos y vuelve a intentarlo.";
+    }
+
+    nextButton.textContent =
+      "Volver a jugar";
+
+    nextButton.style.display =
+      "inline-flex";
+  }
+
+
+  function restartGame() {
+    currentQuestion = 0;
+    score = 0;
+    answered = false;
+    gameFinished = false;
+
+    showQuestion();
+  }
+
+
+  nextButton.addEventListener("click", () => {
+    if (gameFinished) {
+      restartGame();
+      return;
+    }
+
+    if (!answered) {
+      return;
+    }
+
+    if (
+      currentQuestion < questions.length - 1
+    ) {
+      currentQuestion += 1;
+      showQuestion();
+      return;
+    }
+
+    showFinalResult();
+  });
+
+
+  showQuestion();
+</script>
+
+</body>
+</html>
