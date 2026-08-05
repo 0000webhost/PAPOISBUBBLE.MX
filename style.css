@@ -971,3 +971,747 @@ footer {
     color: white;
 }
 }
+
+/* ==================================================
+   AJUSTE RESPONSIVE FINAL PARA TODO PAPOIS BUBBLE
+   PEGAR HASTA ABAJO DE styles.css
+   ================================================== */
+
+/* Evita que cualquier elemento se salga de la pantalla */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+video,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+button,
+input,
+textarea,
+select {
+  max-width: 100%;
+  font-family: inherit;
+}
+
+/* ==================================================
+   TABLET
+   ================================================== */
+
+@media (max-width: 980px) {
+  .hero,
+  .about-content,
+  .purpose-grid,
+  .contact-layout,
+  .contact-container,
+  .pack-card-content,
+  .grid-2 {
+    grid-template-columns: 1fr !important;
+  }
+
+  .stats,
+  .values-grid,
+  .goals-grid,
+  .difference-grid,
+  .animal-grid,
+  .games-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .pack-card {
+    grid-column: auto !important;
+  }
+}
+
+/* ==================================================
+   CELULAR
+   ================================================== */
+
+@media (max-width: 760px) {
+
+  /* --------------------------------
+     ENCABEZADO
+     -------------------------------- */
+
+  header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
+    width: 100% !important;
+    padding: 10px 0 !important;
+    background: rgba(142, 216, 248, 0.97) !important;
+    border-bottom: 1px solid rgba(36, 80, 102, 0.1) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+  }
+
+  .header-inner {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 9px !important;
+    padding: 0 10px !important;
+  }
+
+  /* También funciona si algún HTML no tiene header-inner */
+  header > .logo {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+    margin: 0 auto 8px !important;
+  }
+
+  .logo {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    max-width: 180px !important;
+    color: #ffffff !important;
+    font-size: 1.05rem !important;
+    line-height: 1.1 !important;
+    text-align: center !important;
+    text-decoration: none !important;
+  }
+
+  .logo::before {
+    width: 10px !important;
+    height: 10px !important;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.18) !important;
+  }
+
+  .logo img {
+    display: block !important;
+    width: auto !important;
+    max-width: 165px !important;
+    height: 44px !important;
+    margin: 0 auto !important;
+    object-fit: contain !important;
+  }
+
+  /* Menú horizontal deslizable */
+  nav {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 7px !important;
+    padding: 2px 10px 7px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scrollbar-width: none !important;
+    scroll-snap-type: x proximity !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  nav::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  nav a {
+    display: inline-flex !important;
+    flex: 0 0 auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 40px !important;
+    padding: 8px 13px !important;
+    border-radius: 999px !important;
+    color: #ffffff !important;
+    font-size: 0.86rem !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+    text-align: center !important;
+    scroll-snap-align: start !important;
+  }
+
+  nav a:hover,
+  nav a:focus-visible,
+  nav a.active {
+    color: #168aad !important;
+    background: #fff4a3 !important;
+    transform: none !important;
+  }
+
+  .nav-cart {
+    flex: 0 0 44px !important;
+    width: 44px !important;
+    min-width: 44px !important;
+    height: 40px !important;
+    margin: 0 !important;
+    border-radius: 999px !important;
+  }
+
+  .nav-cart-count {
+    top: -3px !important;
+    right: -3px !important;
+  }
+
+  /* --------------------------------
+     CONTENEDORES GENERALES
+     -------------------------------- */
+
+  .hero,
+  .section,
+  .products-hero,
+  .products-section,
+  .products-message,
+  .about-hero,
+  .about-section,
+  .difference-section,
+  .goals-section,
+  .about-message,
+  .purpose-hero,
+  .purpose-section,
+  .values-section,
+  .commitment-section,
+  .learn-hero,
+  .learn-section,
+  .games-section,
+  .learning-message,
+  .contact-hero,
+  .contact-main,
+  .contact-message,
+  .memory-page,
+  .guess-page,
+  .quiz-page {
+    width: calc(100% - 20px) !important;
+    max-width: calc(100% - 20px) !important;
+    margin: 14px auto 0 !important;
+    border-radius: 22px !important;
+  }
+
+  .hero,
+  .section,
+  .products-section,
+  .about-section,
+  .difference-section,
+  .goals-section,
+  .purpose-section,
+  .values-section,
+  .learn-section,
+  .games-section,
+  .contact-main,
+  .memory-page,
+  .guess-page,
+  .quiz-page {
+    padding: 30px 16px !important;
+  }
+
+  .products-hero,
+  .about-hero,
+  .purpose-hero,
+  .learn-hero,
+  .contact-hero {
+    padding: 44px 18px !important;
+  }
+
+  .products-message,
+  .about-message,
+  .commitment-section,
+  .learning-message,
+  .contact-message {
+    padding: 34px 18px !important;
+  }
+
+  /* --------------------------------
+     PORTADA / HERO
+     -------------------------------- */
+
+  .hero {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    text-align: center !important;
+  }
+
+  .hero-copy,
+  .hero-text {
+    display: grid !important;
+    justify-items: center !important;
+    width: 100% !important;
+  }
+
+  .hero h1,
+  .products-hero h1,
+  .about-hero h1,
+  .purpose-hero h1,
+  .learn-hero h1,
+  .contact-hero h1,
+  .memory-page h1,
+  .guess-page h1,
+  .quiz-page h1 {
+    font-size: clamp(2rem, 10vw, 3rem) !important;
+    line-height: 1.08 !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .hero h2 {
+    font-size: 1.3rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .hero p,
+  .products-hero p,
+  .about-hero p,
+  .purpose-hero p,
+  .learn-hero p,
+  .contact-hero p {
+    font-size: 0.98rem !important;
+    line-height: 1.65 !important;
+  }
+
+  .hero-actions {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    gap: 10px !important;
+  }
+
+  .hero-actions .btn {
+    width: 100% !important;
+  }
+
+  .hero-media,
+  .hero-frame {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .hero-frame {
+    padding: 12px !important;
+    border-radius: 20px !important;
+  }
+
+  .hero-frame img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 380px !important;
+    border-radius: 16px !important;
+    object-fit: contain !important;
+  }
+
+  .floating-stat {
+    position: static !important;
+    width: 100% !important;
+    margin-top: 10px !important;
+  }
+
+  /* --------------------------------
+     GRIDS
+     -------------------------------- */
+
+  .cards,
+  .products-grid,
+  .animal-grid,
+  .games-grid,
+  .values-grid,
+  .difference-grid,
+  .goals-grid,
+  .purpose-grid,
+  .grid-2,
+  .contact-layout,
+  .contact-container,
+  .about-content,
+  .pack-card-content {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 17px !important;
+  }
+
+  .stats {
+    grid-template-columns: 1fr !important;
+    width: calc(100% - 20px) !important;
+  }
+
+  .card,
+  .product-card,
+  .animal-card,
+  .game-card,
+  .value-card,
+  .difference-card,
+  .goal-card,
+  .purpose-card,
+  .info-box,
+  .valor,
+  .timeline-step {
+    grid-column: auto !important;
+    width: 100% !important;
+    max-width: 500px !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+
+  .card:hover,
+  .product-card:hover,
+  .animal-card:hover,
+  .game-card:hover,
+  .value-card:hover,
+  .difference-card:hover,
+  .goal-card:hover,
+  .purpose-card:hover {
+    transform: none !important;
+  }
+
+  /* --------------------------------
+     IMÁGENES
+     -------------------------------- */
+
+  .card img,
+  .product-image,
+  .animal-image {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .card img {
+    height: auto !important;
+    max-height: 330px !important;
+    aspect-ratio: 1 / 1 !important;
+    object-fit: contain !important;
+  }
+
+  .product-image {
+    height: auto !important;
+    min-height: 230px !important;
+    aspect-ratio: 1 / 1 !important;
+  }
+
+  .product-image img {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 310px !important;
+    object-fit: contain !important;
+  }
+
+  .animal-image {
+    height: auto !important;
+    min-height: 190px !important;
+  }
+
+  .animal-image img {
+    width: 100% !important;
+    max-width: 170px !important;
+    height: 150px !important;
+    object-fit: contain !important;
+  }
+
+  .about-visual {
+    min-height: 240px !important;
+  }
+
+  /* --------------------------------
+     BOTONES
+     -------------------------------- */
+
+  .btn,
+  .game-button,
+  .instagram-button,
+  .restart-button,
+  .back-button,
+  .next-button,
+  .quiz-next {
+    min-height: 46px !important;
+    padding: 12px 18px !important;
+  }
+
+  .product-card .btn,
+  .game-button,
+  .contact-submit {
+    width: 100% !important;
+  }
+
+  /* --------------------------------
+     FORMULARIOS
+     -------------------------------- */
+
+  .contact-form-box,
+  .contact-info,
+  .contact-form {
+    width: 100% !important;
+    padding: 22px 16px !important;
+  }
+
+  .contact-form input,
+  .contact-form textarea,
+  .contact-form select,
+  .contact-field input,
+  .contact-field textarea,
+  .pack-field select {
+    width: 100% !important;
+    min-width: 0 !important;
+    font-size: 16px !important;
+  }
+
+  .instagram-card {
+    min-height: 310px !important;
+    padding: 28px 18px !important;
+  }
+
+  /* --------------------------------
+     PAQUETE DE DOS JABONES
+     -------------------------------- */
+
+  .pack-card {
+    grid-column: auto !important;
+  }
+
+  .pack-fields,
+  .pack-options {
+    grid-template-columns: 1fr !important;
+  }
+
+  .pack-selector {
+    width: 100% !important;
+    padding: 16px 13px !important;
+  }
+
+  .pack-actions {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .pack-actions .btn {
+    width: 100% !important;
+  }
+
+  /* --------------------------------
+     JUEGO DE MEMORIA
+     -------------------------------- */
+
+  .memory-board {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 12px !important;
+  }
+
+  .memory-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    gap: 7px !important;
+  }
+
+  .memory-card {
+    width: 100% !important;
+    height: auto !important;
+    min-width: 0 !important;
+    aspect-ratio: 0.82 / 1 !important;
+    border-radius: 13px !important;
+  }
+
+  .memory-card-back {
+    padding: 5px !important;
+  }
+
+  .memory-card-back img {
+    width: 75% !important;
+    height: 62% !important;
+    object-fit: contain !important;
+  }
+
+  .memory-card-back span {
+    font-size: 0.65rem !important;
+  }
+
+  .game-information {
+    width: 100% !important;
+    gap: 8px !important;
+  }
+
+  .information-box {
+    flex: 1 1 140px !important;
+    min-width: 0 !important;
+    padding: 9px 12px !important;
+    font-size: 0.85rem !important;
+  }
+
+  /* --------------------------------
+     ADIVINA Y QUIZ
+     -------------------------------- */
+
+  .guess-card,
+  .quiz-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 24px 15px !important;
+  }
+
+  .guess-options {
+    grid-template-columns: 1fr !important;
+  }
+
+  .guess-option,
+  .quiz-option {
+    width: 100% !important;
+    min-height: 50px !important;
+    padding: 12px 14px !important;
+  }
+
+  .guess-actions,
+  .quiz-actions,
+  .memory-actions {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+  }
+
+  .guess-actions a,
+  .guess-actions button,
+  .quiz-actions a,
+  .quiz-actions button,
+  .memory-actions a,
+  .memory-actions button {
+    width: 100% !important;
+  }
+
+  /* --------------------------------
+     CARRITO Y MODALES
+     -------------------------------- */
+
+  .cart-modal,
+  .purchase-modal {
+    padding: 8px !important;
+  }
+
+  .cart-dialog,
+  .purchase-dialog {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 92vh !important;
+    padding: 24px 15px !important;
+    border-radius: 20px !important;
+  }
+
+  .cart-item {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+  }
+
+  .cart-item-controls {
+    justify-content: flex-start !important;
+    width: 100% !important;
+  }
+
+  .cart-summary,
+  .purchase-summary {
+    grid-template-columns: 1fr !important;
+  }
+
+  .cart-actions,
+  .purchase-actions {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .cart-actions .btn,
+  .purchase-actions .btn {
+    width: 100% !important;
+  }
+
+  /* --------------------------------
+     FOOTER
+     -------------------------------- */
+
+  footer {
+    width: calc(100% - 20px) !important;
+    margin: 16px auto !important;
+    padding: 18px 10px !important;
+    font-size: 0.85rem !important;
+  }
+}
+
+/* ==================================================
+   CELULARES MUY PEQUEÑOS
+   ================================================== */
+
+@media (max-width: 390px) {
+  .logo img {
+    max-width: 145px !important;
+    height: 40px !important;
+  }
+
+  nav a {
+    min-height: 38px !important;
+    padding: 7px 11px !important;
+    font-size: 0.8rem !important;
+  }
+
+  .hero,
+  .section,
+  .products-hero,
+  .products-section,
+  .products-message,
+  .about-hero,
+  .about-section,
+  .difference-section,
+  .goals-section,
+  .about-message,
+  .purpose-hero,
+  .purpose-section,
+  .values-section,
+  .commitment-section,
+  .learn-hero,
+  .learn-section,
+  .games-section,
+  .learning-message,
+  .contact-hero,
+  .contact-main,
+  .contact-message,
+  .memory-page,
+  .guess-page,
+  .quiz-page {
+    width: calc(100% - 12px) !important;
+    max-width: calc(100% - 12px) !important;
+  }
+
+  .products-section,
+  .about-section,
+  .difference-section,
+  .goals-section,
+  .purpose-section,
+  .values-section,
+  .learn-section,
+  .games-section,
+  .contact-main,
+  .memory-page,
+  .guess-page,
+  .quiz-page {
+    padding-right: 11px !important;
+    padding-left: 11px !important;
+  }
+
+  .memory-grid {
+    gap: 5px !important;
+  }
+
+  .memory-card-back span {
+    font-size: 0.55rem !important;
+  }
+
+  .btn,
+  .game-button,
+  .instagram-button,
+  .restart-button,
+  .back-button,
+  .next-button,
+  .quiz-next {
+    font-size: 0.9rem !important;
+  }
+}
