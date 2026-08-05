@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>PAPOIS BUBBLE | Aprende</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* =========================
+       PORTADA DE APRENDE
+       ========================= */
+
+    .learn-hero {
+      position: relative;
+      width: min(1180px, calc(100% - 32px));
+      margin: 28px auto 0;
+      padding: 70px 30px;
+      overflow: hidden;
+      border-radius: 32px;
+      background:
+        radial-gradient(
+          circle at 12% 22%,
+          rgba(255, 255, 255, 0.45) 0 24px,
+          transparent 26px
+        ),
+        radial-gradient(
+          circle at 87% 25%,
+          rgba(255, 255, 255, 0.35) 0 40px,
+          transparent 42px
+        ),
+        radial-gradient(
+          circle at 80% 85%,
+          rgba(255, 255, 255, 0.25) 0 18px,
+          transparent 20px
+        ),
+        linear-gradient(
+          135deg,
+          #3a8dde,
+          #73b9f2
+        );
+      color: #ffffff;
+      text-align: center;
+      box-shadow: 0 18px 42px rgba(36, 80, 102, 0.14);
+    }
+
+    .learn-hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .learn-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      padding: 8px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .learn-hero h1 {
+      margin: 0 0 16px;
+      color: #ffffff;
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
+      line-height: 1.05;
+    }
+
+    .learn-hero p {
+      max-width: 720px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 1.08rem;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       SECCIÓN DE ANIMALES
+       ========================= */
+
+    .learn-section {
+      width: min(1180px, calc(100% - 32px));
+      margin: 28px auto 0;
+      padding: 50px 40px;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 32px;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 18px 42px rgba(36, 80, 102, 0.12);
+    }
+
+    .section-title {
+      margin: 0 0 12px;
+      color: #245066;
+      font-size: clamp(2rem, 4vw, 3rem);
+      text-align: center;
+    }
+
+    .section-description {
+      max-width: 760px;
+      margin: 0 auto 36px;
+      color: #4f6f7f;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      text-align: center;
+    }
+
+    .animal-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .animal-card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid rgba(36, 80, 102, 0.1);
+      border-radius: 24px;
+      background: #ffffff;
+      box-shadow: 0 12px 28px rgba(36, 80, 102, 0.09);
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .animal-card:hover {
+      box-shadow: 0 18px 34px rgba(36, 80, 102, 0.14);
+      transform: translateY(-6px);
+    }
+
+    .animal-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 210px;
+      padding: 22px;
+    }
+
+    .animal-image img {
+      width: 100%;
+      max-width: 180px;
+      height: 165px;
+      object-fit: contain;
+    }
+
+    .animal-content {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 22px;
+    }
+
+    .animal-content h3 {
+      margin: 0 0 5px;
+      color: #245066;
+      font-size: 1.45rem;
+    }
+
+    .animal-subtitle {
+      margin: 0 0 12px;
+      color: #3a8dde;
+      font-weight: 800;
+    }
+
+    .animal-content p {
+      margin: 0;
+      color: #4f6f7f;
+      line-height: 1.6;
+    }
+
+    .animal-fact {
+      margin-top: auto;
+    }
+
+    /* Colores de cada animal */
+
+    .rana {
+      background: linear-gradient(
+        135deg,
+        #8d4cc9,
+        #d85cb2
+      );
+    }
+
+    .zorro {
+      background: linear-gradient(
+        135deg,
+        #f68b1f,
+        #ffd166
+      );
+    }
+
+    .koala {
+      background: linear-gradient(
+        135deg,
+        #3a8dde,
+        #86c5f4
+      );
+    }
+
+    .buho {
+      background: linear-gradient(
+        135deg,
+        #ac2334,
+        #e14d5f
+      );
+    }
+
+    .mono {
+      background: linear-gradient(
+        135deg,
+        #b86218,
+        #e89a3d
+      );
+    }
+
+    .mariposa {
+      background: linear-gradient(
+        135deg,
+        #d85cb2,
+        #ff90d0
+      );
+    }
+
+    .serpiente {
+      background: linear-gradient(
+        135deg,
+        #087b29,
+        #48b96c
+      );
+    }
+
+    .abeja {
+      background: linear-gradient(
+        135deg,
+        #f68b1f,
+        #ffd75e
+      );
+    }
+
+    /* =========================
+       JUEGOS
+       ========================= */
+
+    .games-section {
+      width: min(1180px, calc(100% - 32px));
+      margin: 28px auto 0;
+      padding: 50px 40px;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 32px;
+      background: linear-gradient(
+        180deg,
+        #f3f9ff,
+        #ffffff
+      );
+      box-shadow: 0 18px 42px rgba(36, 80, 102, 0.12);
+    }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .game-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 0;
+      padding: 30px 24px;
+      border: 1px solid rgba(36, 80, 102, 0.08);
+      border-radius: 24px;
+      background: #ffffff;
+      box-shadow: 0 12px 28px rgba(36, 80, 102, 0.09);
+      text-align: center;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .game-card:hover {
+      box-shadow: 0 18px 34px rgba(36, 80, 102, 0.13);
+      transform: translateY(-6px);
+    }
+
+    .game-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 88px;
+      height: 88px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      background: linear-gradient(
+        135deg,
+        #eaf4ff,
+        #fff4a3
+      );
+      font-size: 2.6rem;
+    }
+
+    .game-card h3 {
+      margin: 0 0 10px;
+      color: #3a8dde;
+      font-size: 1.45rem;
+    }
+
+    .game-card p {
+      flex: 1;
+      margin: 0 0 20px;
+      color: #4f6f7f;
+      line-height: 1.6;
+    }
+
+    .game-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      background: linear-gradient(
+        135deg,
+        #3a8dde,
+        #168aad
+      );
+      color: #ffffff;
+      font-weight: 800;
+      text-decoration: none;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .game-button:hover,
+    .game-button:focus-visible {
+      box-shadow: 0 12px 25px rgba(58, 141, 222, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* =========================
+       MENSAJE FINAL
+       ========================= */
+
+    .learning-message {
+      width: min(1180px, calc(100% - 32px));
+      margin: 28px auto 0;
+      padding: 48px 30px;
+      border-radius: 32px;
+      background:
+        radial-gradient(
+          circle at 15% 20%,
+          rgba(255, 255, 255, 0.22) 0 22px,
+          transparent 24px
+        ),
+        radial-gradient(
+          circle at 88% 78%,
+          rgba(255, 255, 255, 0.2) 0 36px,
+          transparent 38px
+        ),
+        linear-gradient(
+          135deg,
+          #8cc63f,
+          #64b83a
+        );
+      color: #ffffff;
+      text-align: center;
+      box-shadow: 0 18px 42px rgba(36, 80, 102, 0.12);
+    }
+
+    .learning-message h2 {
+      margin: 0 0 14px;
+      color: #ffffff;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+    }
+
+    .learning-message p {
+      max-width: 760px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       TABLET
+       ========================= */
+
+    @media (max-width: 1000px) {
+      .animal-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .games-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .game-card:last-child {
+        grid-column: 1 / -1;
+        width: min(500px, 100%);
+        margin: 0 auto;
+      }
+    }
+
+    /* =========================
+       CELULAR
+       ========================= */
+
+    @media (max-width: 760px) {
+      .learn-hero,
+      .learn-section,
+      .games-section,
+      .learning-message {
+        width: calc(100% - 24px);
+        margin-top: 18px;
+        border-radius: 24px;
+      }
+
+      .learn-hero {
+        padding: 48px 20px;
+      }
+
+      .learn-hero h1 {
+        font-size: clamp(2.2rem, 11vw, 3.2rem);
+      }
+
+      .learn-hero p {
+        font-size: 1rem;
+      }
+
+      .learn-section,
+      .games-section {
+        padding: 38px 20px;
+      }
+
+      .section-description {
+        margin-bottom: 28px;
+        font-size: 1rem;
+      }
+
+      .animal-grid,
+      .games-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .animal-card,
+      .game-card,
+      .game-card:last-child {
+        grid-column: auto;
+        width: 100%;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      .animal-card:hover,
+      .game-card:hover {
+        transform: none;
+      }
+
+      .animal-image {
+        min-height: 190px;
+      }
+
+      .animal-image img {
+        height: 150px;
+      }
+
+      .animal-content {
+        padding: 20px;
+      }
+
+      .game-card {
+        padding: 26px 20px;
+      }
+
+      .learning-message {
+        padding: 38px 20px;
+      }
+    }
+
+    /* =========================
+       CELULARES PEQUEÑOS
+       ========================= */
+
+    @media (max-width: 420px) {
+      .learn-hero,
+      .learn-section,
+      .games-section,
+      .learning-message {
+        width: calc(100% - 16px);
+      }
+
+      .learn-hero {
+        padding: 42px 16px;
+      }
+
+      .learn-section,
+      .games-section {
+        padding: 32px 14px;
+      }
+
+      .animal-card,
+      .game-card {
+        border-radius: 20px;
+      }
+
+      .animal-image {
+        min-height: 175px;
+        padding: 16px;
+      }
+
+      .animal-image img {
+        height: 140px;
+      }
+
+      .animal-content {
+        padding: 18px;
+      }
+
+      .game-button {
+        width: 100%;
+      }
+
+      .learning-message {
+        padding: 34px 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+
+    <div class="logo">
+      PAPOIS BUBBLE
+    </div>
+
+    <nav>
+      <a href="index.html">Inicio</a>
+
+      <a href="productos.html">
+        Productos
+      </a>
+
+      <a href="nosotros.html">
+        Nosotros
+      </a>
+
+      <a href="mision-vision.html">
+        Misión y Visión
+      </a>
+
+      <a
+        href="aprende.html"
+        class="active"
+      >
+        Aprende
+      </a>
+
+      <a href="contacto.html">
+        Contacto
+      </a>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+  <!-- Portada -->
+
+  <section class="learn-hero">
+
+    <div class="learn-hero-content">
+
+      <div class="learn-badge">
+        Diversión y aprendizaje
+      </div>
+
+      <h1>
+        Aprende con PAPOIS BUBBLE
+      </h1>
+
+      <p>
+        Cada animalito tiene algo especial por enseñarnos.
+        Descubre datos curiosos, conoce la naturaleza y
+        diviértete mientras aprendes.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- Animalitos -->
+
+  <section class="learn-section">
+
+    <h2 class="section-title">
+      Conoce a nuestros animalitos
+    </h2>
+
+    <p class="section-description">
+      Cada jabón incluye una tarjeta coleccionable con
+      información para que la aventura continúe después
+      de la hora del baño.
+    </p>
+
+    <div class="animal-grid">
+
+      <!-- Rana -->
+
+      <article class="animal-card">
+
+        <div class="animal-image rana">
+
+          <img
+            src="assets/learn-rana.png"
+            alt="Ilustración de una rana"
+          >
+
+        </div>
+
+        <div class="animal-content">
+
+          <h3>Rana</h3>
+
+          <p class="animal-subtitle">
+            La saltarina del agua
+          </p>
+
+          <p class="animal-fact">
+            Las ranas son anfibios. Nacen como renacuajos
+            y después desarrollan patas. Algunas pueden
+            saltar hasta 20 veces el tamaño de su cuerpo.
+          </p>
+
+        </div>
+
+      </article>
+
+      <!-- Zorro -->
+
+      <article class="animal-card">
+
+        <div class="animal-image zorro">
+
+          <img
+            src="assets/learn-zorro.png"
+            alt="Ilustración de un zorro"
+          >
+
+        </div>
+
+        <div class="animal-content">
+
+          <h3>Zorro</h3>
+
+          <p class="animal-subtitle">
+            El maestro del sigilo
+          </p>
+
+          <p class="animal-fact">
+            El zorro tiene un oído muy desarrollado.
+            Puede escuchar pequeños movimientos bajo la
+            tierra o la nieve y cambia de pelaje según
+            la estación.
+          </p>
+
+        </div>
+
+      </article>
+
+      <!-- Koala -->
+
+      <article class="animal-card">
+
+        <div class="animal-image koala">
+
+          <img
+            src="assets/learn-koala.png"
+            alt="Ilustración de un koala"
+          >
+
+        </div>
+
+        <div class="animal-content">
+
+          <h3>Koala</h3>
+
+          <p class="animal-subtitle">
+            El dormilón del bosque
+          </p>
+
+          <p class="animal-fact">
+            El koala es un marsupial y puede dormir
+            hasta 20 horas al día. Vive en los árboles
+            y se alimenta principalmente de hojas de
+            eucalipto.
+          </p>
+
+        </div>
+
+      </article>
+
+      <!-- Búho -->
+
+      <article class="animal-card">
+
+        <div class="animal-image buho">
+
+          <img
+            src="assets/learn-buho.png"
+            alt="Ilustración de un búho"
+          >
+
+        </div>
+
+        <div class="animal-content">
+
+          <h3>Búho</h3>
+
+          <p class="animal-subtitle">
+            El vigilante nocturno
+          </p>
+
+          <p class="animal-fact">
+            Los búhos pueden ver muy bien durante la
+            noche. Sus plumas les permiten volar casi
+            sin hacer ruido y pueden girar mucho la
+            cabeza.
+          </p>
+
+        </div>
+
+      </article>
+
+      <!-- Mono -->
+
+      <article class="animal-card">
+
+        <div class="animal-image mono">
+
+          <img
+            src="assets/learn-mono.png"
+            alt="Ilustración de un mono"
+          >
+
+        </div>
+
+        <div class="animal-content">
+
+          <h3>Mono</h3>
+
+          <p class="animal-subtitle">
+            El acróbata de la selva
+          </p>
+
+          <p class="animal-fact">
+            Muchos monos utilizan su cola para mantener
+            el equilibrio y agarrarse de las ramas.
+            Son animales inteligentes, curiosos y muy
+            sociales.
+          </p>
+
+        </div>
+
+      </article>
+
+      <!-- Mariposa -->
+
+      <article class="animal-card">
+
+        <div class="animal-image mariposa">
+
+          <img
+            src="assets/learn-mariposa.png"
+            alt="Ilustración de una mariposa"
+          >
+
+        </div>
+
+        <div class="animal-content">
+
+          <h3>Mariposa</h3>
+
+          <p class="animal-subtitle">
+            La reina de la transformación
+          </p>
+
+          <p class="animal-fact">
+            Las mariposas comienzan su vida como orugas.
+            Después forman una crisálida y finalmente
+            salen convertidas en mariposas.
+          </p>
+
+        </div>
+
+      </article>
+
+      <!-- Serpiente -->
+
+      <article class="animal-card">
+
+        <div class="animal-image serpiente">
+
+          <img
+            src="assets/learn-serpiente.png"
+            alt="Ilustración de una serpiente"
+          >
+
+        </div>
+
+        <div class="animal-content">
+
+          <h3>Serpiente</h3>
+
+          <p class="animal-subtitle">
+            La experta en deslizarse
+          </p>
+
+          <p class="animal-fact">
+            Las serpientes no tienen patas. Se mueven
+            deslizando su cuerpo y utilizan su lengua
+            para conocer mejor lo que sucede a su
+            alrededor.
+          </p>
+
+        </div>
+
+      </article>
+
+      <!-- Abeja -->
+
+      <article class="animal-card">
+
+        <div class="animal-image abeja">
+
+          <img
+            src="assets/learn-abeja.png"
+            alt="Ilustración de una abeja"
+          >
+
+        </div>
+
+        <div class="animal-content">
+
+          <h3>Abeja</h3>
+
+          <p class="animal-subtitle">
+            La guardiana de las flores
+          </p>
+
+          <p class="animal-fact">
+            Las abejas ayudan a polinizar las plantas.
+            Gracias a ellas pueden crecer muchas frutas,
+            flores y semillas. Viven juntas dentro de
+            colmenas.
+          </p>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+  <!-- Juegos -->
+
+  <section class="games-section">
+
+    <h2 class="section-title">
+      Juega y aprende
+    </h2>
+
+    <p class="section-description">
+      Pon a prueba lo que aprendiste con nuestros
+      juegos infantiles.
+    </p>
+
+    <div class="games-grid">
+
+      <!-- Memoria -->
+
+      <article class="game-card">
+
+        <div
+          class="game-icon"
+          aria-hidden="true"
+        >
+          🧠
+        </div>
+
+        <h3>Memoria animal</h3>
+
+        <p>
+          Encuentra las parejas de nuestros animalitos
+          y demuestra qué tan buena es tu memoria.
+        </p>
+
+        <a
+          href="juego-memoria.html"
+          class="game-button"
+        >
+          Jugar memoria
+        </a>
+
+      </article>
+
+      <!-- Adivina -->
+
+      <article class="game-card">
+
+        <div
+          class="game-icon"
+          aria-hidden="true"
+        >
+          🔍
+        </div>
+
+        <h3>Adivina el animal</h3>
+
+        <p>
+          Lee cada pista, piensa bien y descubre qué
+          animal de PAPOIS BUBBLE se encuentra escondido.
+        </p>
+
+        <a
+          href="juego-adivina.html"
+          class="game-button"
+        >
+          Comenzar juego
+        </a>
+
+      </article>
+
+      <!-- Quiz -->
+
+      <article class="game-card">
+
+        <div
+          class="game-icon"
+          aria-hidden="true"
+        >
+          ⭐
+        </div>
+
+        <h3>Quiz PAPOIS</h3>
+
+        <p>
+          Contesta preguntas sobre la naturaleza y
+          comprueba cuánto sabes de cada animalito.
+        </p>
+
+        <a
+          href="juego-quiz.html"
+          class="game-button"
+        >
+          Iniciar quiz
+        </a>
+
+      </article>
+
+    </div>
+
+  </section>
+
+  <!-- Mensaje final -->
+
+  <section class="learning-message">
+
+    <h2>
+      Aprender también puede ser una aventura
+    </h2>
+
+    <p>
+      En PAPOIS BUBBLE creemos que la hora del baño
+      puede convertirse en un momento para imaginar,
+      descubrir y compartir en familia.
+    </p>
+
+  </section>
+
+</main>
+
+<footer>
+  <p>
+    © 2026 PAPOIS BUBBLE | Todos los derechos reservados
+  </p>
+</footer>
+
+</body>
+</html>
