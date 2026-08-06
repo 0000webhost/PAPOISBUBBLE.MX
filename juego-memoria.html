@@ -10,18 +10,125 @@
 
   <title>PAPOIS BUBBLE | Juego de memoria</title>
 
-  <link rel="stylesheet" href="style.css">
-
   <style>
-    /* =========================
+    /* ========================================
+       CONFIGURACIÓN GENERAL DE ESTA PÁGINA
+       ======================================== */
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      background: #f6fbff;
+      color: #245066;
+      font-family:
+        "DM Sans",
+        Arial,
+        Helvetica,
+        sans-serif;
+    }
+
+    button,
+    a {
+      font: inherit;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* ========================================
+       ENCABEZADO
+       ======================================== */
+
+    header {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      background: #ffffff;
+      border-bottom: 1px solid rgba(36, 80, 102, 0.1);
+      box-shadow: 0 5px 20px rgba(36, 80, 102, 0.07);
+    }
+
+    .header-inner {
+      width: min(1180px, calc(100% - 32px));
+      min-height: 84px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .logo {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .logo img {
+      width: 165px;
+      max-height: 64px;
+      object-fit: contain;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 5px;
+    }
+
+    nav a {
+      padding: 11px 13px;
+      border-radius: 999px;
+      color: #245066;
+      font-size: 0.94rem;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+      transition:
+        color 0.2s ease,
+        background-color 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      outline: none;
+      color: #3a8dde;
+      background: #eef7ff;
+      transform: translateY(-1px);
+    }
+
+    nav a.active {
+      color: #ffffff;
+      background: #3a8dde;
+    }
+
+    /* ========================================
        PÁGINA DEL JUEGO
-       ========================= */
+       ======================================== */
 
     .memory-page {
       width: min(1180px, calc(100% - 32px));
-      min-height: calc(100vh - 180px);
-      margin: 28px auto 0;
+      margin: 28px auto;
       padding: 52px 30px;
+      flex: 1;
       border: 1px solid rgba(36, 80, 102, 0.08);
       border-radius: 32px;
       background:
@@ -32,7 +139,7 @@
         ),
         radial-gradient(
           circle at 90% 18%,
-          rgba(255, 230, 109, 0.18) 0 44px,
+          rgba(246, 139, 31, 0.12) 0 44px,
           transparent 46px
         ),
         linear-gradient(
@@ -65,7 +172,7 @@
     .memory-page h1 {
       margin: 0 0 12px;
       color: #3a8dde;
-      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-size: clamp(2.3rem, 5vw, 4rem);
       line-height: 1.05;
     }
 
@@ -77,9 +184,9 @@
       line-height: 1.65;
     }
 
-    /* =========================
+    /* ========================================
        INFORMACIÓN DEL JUEGO
-       ========================= */
+       ======================================== */
 
     .game-information {
       display: flex;
@@ -109,11 +216,12 @@
       color: #3a8dde;
     }
 
-    /* =========================
+    /* ========================================
        TABLERO
-       ========================= */
+       ======================================== */
 
     .memory-board {
+      width: 100%;
       max-width: 760px;
       margin: 0 auto;
       padding: 28px;
@@ -135,11 +243,16 @@
       position: relative;
       width: 100%;
       aspect-ratio: 0.86 / 1;
-      border: none;
+      margin: 0;
+      padding: 0;
+      border: 0;
       border-radius: 20px;
       background: transparent;
       cursor: pointer;
       perspective: 1000px;
+      appearance: none;
+      -webkit-appearance: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .memory-card:focus-visible {
@@ -149,6 +262,7 @@
 
     .memory-card-inner {
       position: relative;
+      display: block;
       width: 100%;
       height: 100%;
       border-radius: inherit;
@@ -193,6 +307,7 @@
     }
 
     .memory-card-front span {
+      color: #ffffff;
       font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 800;
     }
@@ -220,21 +335,25 @@
       height: 72%;
       margin: 0 auto 6px;
       object-fit: contain;
+      pointer-events: none;
     }
 
     .memory-card-back span {
       color: #245066;
       font-size: 0.92rem;
       font-weight: 800;
+      pointer-events: none;
     }
 
-    .memory-card.is-matched {
+    .memory-card.is-matched,
+    .memory-card:disabled {
       cursor: default;
+      opacity: 1;
     }
 
-    /* =========================
+    /* ========================================
        MENSAJE Y BOTONES
-       ========================= */
+       ======================================== */
 
     .game-message {
       min-height: 30px;
@@ -259,6 +378,7 @@
       align-items: center;
       justify-content: center;
       min-height: 48px;
+      margin: 0;
       padding: 13px 24px;
       border: none;
       border-radius: 999px;
@@ -298,14 +418,51 @@
       transform: translateY(-2px);
     }
 
-    /* =========================
+    /* ========================================
+       PIE DE PÁGINA
+       ======================================== */
+
+    footer {
+      width: 100%;
+      margin-top: auto;
+      padding: 25px 20px;
+      background: #245066;
+      text-align: center;
+    }
+
+    footer p {
+      margin: 0;
+      color: #ffffff;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* ========================================
        TABLET
-       ========================= */
+       ======================================== */
+
+    @media (max-width: 900px) {
+      .header-inner {
+        padding: 16px 0;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      nav {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        padding: 9px 11px;
+        font-size: 0.88rem;
+      }
+    }
 
     @media (max-width: 760px) {
       .memory-page {
         width: calc(100% - 24px);
-        min-height: auto;
         margin-top: 18px;
         padding: 42px 20px;
         border-radius: 24px;
@@ -334,18 +491,74 @@
       }
     }
 
-    /* =========================
+    /* ========================================
        CELULAR
-       ========================= */
+       ======================================== */
 
     @media (max-width: 560px) {
+      .header-inner {
+        width: 100%;
+        padding: 14px 12px;
+      }
+
+      .logo img {
+        width: 145px;
+      }
+
+      nav {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+      }
+
+      nav a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        padding: 7px 5px;
+        border-radius: 12px;
+        font-size: 0.72rem;
+        line-height: 1.15;
+        text-align: center;
+        white-space: normal;
+      }
+
       .memory-page {
         width: calc(100% - 16px);
-        padding: 36px 12px;
+        margin: 12px auto;
+        padding: 32px 12px;
+        border-radius: 20px;
+      }
+
+      .memory-intro {
+        margin-bottom: 22px;
+      }
+
+      .memory-page h1 {
+        font-size: clamp(2rem, 11vw, 2.8rem);
+      }
+
+      .memory-description {
+        font-size: 0.94rem;
+        line-height: 1.55;
+      }
+
+      .game-information {
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+
+      .information-box {
+        min-width: 0;
+        min-height: 43px;
+        padding: 8px 10px;
+        font-size: 0.84rem;
       }
 
       .memory-board {
-        padding: 14px;
+        padding: 12px;
+        border-radius: 18px;
       }
 
       .memory-grid {
@@ -353,11 +566,11 @@
       }
 
       .memory-card {
-        border-radius: 15px;
+        border-radius: 14px;
       }
 
       .memory-card-back {
-        padding: 6px;
+        padding: 5px;
         border-width: 2px;
       }
 
@@ -368,26 +581,47 @@
       }
 
       .memory-card-back span {
-        font-size: 0.7rem;
+        font-size: 0.67rem;
       }
 
       .memory-card-front span {
-        font-size: 1.9rem;
+        font-size: 1.8rem;
+      }
+
+      .game-message {
+        margin-top: 16px;
+        font-size: 0.9rem;
+      }
+
+      .memory-actions {
+        margin-top: 16px;
       }
     }
 
     @media (max-width: 380px) {
+      nav a {
+        font-size: 0.66rem;
+      }
+
       .memory-grid {
         gap: 6px;
       }
 
+      .memory-board {
+        padding: 9px;
+      }
+
+      .memory-card {
+        border-radius: 12px;
+      }
+
       .memory-card-back span {
-        font-size: 0.62rem;
+        font-size: 0.58rem;
       }
 
       .information-box {
         width: 100%;
-        min-width: 0;
+        flex-basis: 100%;
       }
     }
   </style>
@@ -395,402 +629,405 @@
 
 <body>
 
-<header>
-  <div class="header-inner">
-
-    <div class="logo">
-      PAPOIS BUBBLE
-    </div>
-
-    <nav>
-      <a href="index.html">
-        Inicio
-      </a>
-
-      <a href="productos.html">
-        Productos
-      </a>
-
-      <a href="nosotros.html">
-        Nosotros
-      </a>
-
-      <a href="mision-vision.html">
-        Misión y Visión
-      </a>
+  <header>
+    <div class="header-inner">
 
       <a
-        href="aprende.html"
-        class="active"
+        href="index.html"
+        class="logo"
+        aria-label="Ir al inicio de PAPOIS BUBBLE"
       >
-        Aprende
+        <img
+          src="assets/LOGO0.PNG"
+          alt="PAPOIS BUBBLE"
+        >
       </a>
 
-      <a href="contacto.html">
-        Contacto
-      </a>
-    </nav>
+      <nav aria-label="Menú principal">
+        <a href="index.html">
+          Inicio
+        </a>
 
-  </div>
-</header>
+        <a href="productos.html">
+          Productos
+        </a>
 
-<main class="memory-page">
+        <a href="nosotros.html">
+          Nosotros
+        </a>
 
-  <section class="memory-intro">
+        <a href="mision-vision.html">
+          Misión y Visión
+        </a>
 
-    <div class="memory-badge">
-      Juego educativo
+        <a
+          href="aprende.html"
+          class="active"
+        >
+          Aprende
+        </a>
+
+        <a href="contacto.html">
+          Contacto
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="memory-page">
+
+    <section class="memory-intro">
+
+      <div class="memory-badge">
+        Juego educativo
+      </div>
+
+      <h1>
+        Memoria animal
+      </h1>
+
+      <p class="memory-description">
+        Encuentra las parejas de los ocho animalitos de
+        PAPOIS BUBBLE. Voltea dos tarjetas por turno y
+        recuerda dónde se encuentra cada personaje.
+      </p>
+
+    </section>
+
+    <div class="game-information">
+
+      <div class="information-box">
+        Movimientos:
+        <span id="moves">0</span>
+      </div>
+
+      <div class="information-box">
+        Parejas:
+        <span id="matches">0</span>
+        de 8
+      </div>
+
     </div>
 
-    <h1>
-      Memoria animal
-    </h1>
+    <section
+      class="memory-board"
+      aria-label="Tablero del juego de memoria"
+    >
 
-    <p class="memory-description">
-      Encuentra las parejas de los ocho animalitos de
-      PAPOIS BUBBLE. Voltea dos tarjetas por turno y
-      recuerda dónde se encuentra cada personaje.
+      <div
+        class="memory-grid"
+        id="memoryGrid"
+      ></div>
+
+      <p
+        class="game-message"
+        id="gameMessage"
+        aria-live="polite"
+      ></p>
+
+      <div class="memory-actions">
+
+        <button
+          class="restart-button"
+          type="button"
+          id="restartButton"
+        >
+          Reiniciar juego
+        </button>
+
+        <a
+          href="aprende.html"
+          class="back-button"
+        >
+          Regresar a Aprende
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      © 2026 PAPOIS BUBBLE | Todos los derechos reservados
     </p>
+  </footer>
 
-  </section>
+  <script>
+    const animals = [
+      {
+        name: "Rana",
+        image: "assets/learn-rana.png"
+      },
+      {
+        name: "Zorro",
+        image: "assets/learn-zorro.png"
+      },
+      {
+        name: "Koala",
+        image: "assets/learn-koala.png"
+      },
+      {
+        name: "Búho",
+        image: "assets/learn-buho.png"
+      },
+      {
+        name: "Mono",
+        image: "assets/learn-mono.png"
+      },
+      {
+        name: "Mariposa",
+        image: "assets/learn-mariposa.png"
+      },
+      {
+        name: "Serpiente",
+        image: "assets/learn-serpiente.png"
+      },
+      {
+        name: "Abeja",
+        image: "assets/learn-abeja.png"
+      }
+    ];
 
-  <div class="game-information">
+    const memoryGrid =
+      document.getElementById("memoryGrid");
 
-    <div class="information-box">
-      Movimientos:
-      <span id="moves">0</span>
-    </div>
+    const movesElement =
+      document.getElementById("moves");
 
-    <div class="information-box">
-      Parejas:
-      <span id="matches">0</span>
-      de 8
-    </div>
+    const matchesElement =
+      document.getElementById("matches");
 
-  </div>
+    const gameMessage =
+      document.getElementById("gameMessage");
 
-  <section
-    class="memory-board"
-    aria-label="Tablero del juego de memoria"
-  >
+    const restartButton =
+      document.getElementById("restartButton");
 
-    <div
-      class="memory-grid"
-      id="memoryGrid"
-    ></div>
+    let firstCard = null;
+    let secondCard = null;
+    let lockBoard = false;
+    let moves = 0;
+    let matches = 0;
+    let mismatchTimer = null;
 
-    <p
-      class="game-message"
-      id="gameMessage"
-      aria-live="polite"
-    ></p>
+    function shuffleCards(cards) {
+      const shuffledCards = [...cards];
 
-    <div class="memory-actions">
+      for (
+        let index = shuffledCards.length - 1;
+        index > 0;
+        index -= 1
+      ) {
+        const randomIndex =
+          Math.floor(Math.random() * (index + 1));
 
-      <button
-        class="restart-button"
-        type="button"
-        id="restartButton"
-      >
-        Reiniciar juego
-      </button>
-
-      <a
-        href="aprende.html"
-        class="back-button"
-      >
-        Regresar a Aprende
-      </a>
-
-    </div>
-
-  </section>
-
-</main>
-
-<footer>
-  <p>
-    © 2026 PAPOIS BUBBLE | Todos los derechos reservados
-  </p>
-</footer>
-
-<script>
-  const animals = [
-    {
-      name: "Rana",
-      image: "assets/learn-rana.png"
-    },
-    {
-      name: "Zorro",
-      image: "assets/learn-zorro.png"
-    },
-    {
-      name: "Koala",
-      image: "assets/learn-koala.png"
-    },
-    {
-      name: "Búho",
-      image: "assets/learn-buho.png"
-    },
-    {
-      name: "Mono",
-      image: "assets/learn-mono.png"
-    },
-    {
-      name: "Mariposa",
-      image: "assets/learn-mariposa.png"
-    },
-    {
-      name: "Serpiente",
-      image: "assets/learn-serpiente.png"
-    },
-    {
-      name: "Abeja",
-      image: "assets/learn-abeja.png"
-    }
-  ];
-
-  const memoryGrid =
-    document.getElementById("memoryGrid");
-
-  const movesElement =
-    document.getElementById("moves");
-
-  const matchesElement =
-    document.getElementById("matches");
-
-  const gameMessage =
-    document.getElementById("gameMessage");
-
-  const restartButton =
-    document.getElementById("restartButton");
-
-  let firstCard = null;
-  let secondCard = null;
-  let lockBoard = false;
-  let moves = 0;
-  let matches = 0;
-  let mismatchTimer = null;
-
-
-  function shuffleCards(cards) {
-    const shuffledCards = [...cards];
-
-    for (
-      let index = shuffledCards.length - 1;
-      index > 0;
-      index -= 1
-    ) {
-      const randomIndex =
-        Math.floor(Math.random() * (index + 1));
-
-      [
-        shuffledCards[index],
-        shuffledCards[randomIndex]
-      ] = [
-        shuffledCards[randomIndex],
-        shuffledCards[index]
-      ];
-    }
-
-    return shuffledCards;
-  }
-
-
-  function createGame() {
-    if (mismatchTimer) {
-      clearTimeout(mismatchTimer);
-      mismatchTimer = null;
-    }
-
-    firstCard = null;
-    secondCard = null;
-    lockBoard = false;
-    moves = 0;
-    matches = 0;
-
-    movesElement.textContent = "0";
-    matchesElement.textContent = "0";
-    gameMessage.textContent = "";
-
-    const duplicatedAnimals = animals.flatMap(
-      (animal) => [
-        {
-          ...animal,
-          cardId: `${animal.name}-1`
-        },
-        {
-          ...animal,
-          cardId: `${animal.name}-2`
-        }
-      ]
-    );
-
-    const shuffledAnimals =
-      shuffleCards(duplicatedAnimals);
-
-    memoryGrid.innerHTML = "";
-
-    shuffledAnimals.forEach((animal) => {
-      const button =
-        document.createElement("button");
-
-      button.className = "memory-card";
-      button.type = "button";
-      button.dataset.animal = animal.name;
-      button.dataset.cardId = animal.cardId;
-      button.setAttribute(
-        "aria-label",
-        "Tarjeta oculta"
-      );
-
-      button.innerHTML = `
-        <span class="memory-card-inner">
-
-          <span class="memory-card-front">
-            <span aria-hidden="true">?</span>
-          </span>
-
-          <span class="memory-card-back">
-            <img
-              src="${animal.image}"
-              alt=""
-            >
-            <span>${animal.name}</span>
-          </span>
-
-        </span>
-      `;
-
-      button.addEventListener(
-        "click",
-        flipCard
-      );
-
-      memoryGrid.appendChild(button);
-    });
-  }
-
-
-  function flipCard(event) {
-    const selectedCard =
-      event.currentTarget;
-
-    if (
-      lockBoard ||
-      selectedCard === firstCard ||
-      selectedCard.classList.contains("is-matched") ||
-      selectedCard.classList.contains("is-open")
-    ) {
-      return;
-    }
-
-    selectedCard.classList.add("is-open");
-
-    selectedCard.setAttribute(
-      "aria-label",
-      selectedCard.dataset.animal
-    );
-
-    if (!firstCard) {
-      firstCard = selectedCard;
-      return;
-    }
-
-    secondCard = selectedCard;
-    moves += 1;
-
-    movesElement.textContent =
-      String(moves);
-
-    checkForMatch();
-  }
-
-
-  function checkForMatch() {
-    const isMatch =
-      firstCard.dataset.animal ===
-      secondCard.dataset.animal;
-
-    if (isMatch) {
-      firstCard.classList.remove("is-open");
-      secondCard.classList.remove("is-open");
-
-      firstCard.classList.add("is-matched");
-      secondCard.classList.add("is-matched");
-
-      firstCard.disabled = true;
-      secondCard.disabled = true;
-
-      firstCard.setAttribute(
-        "aria-label",
-        `${firstCard.dataset.animal}, pareja encontrada`
-      );
-
-      secondCard.setAttribute(
-        "aria-label",
-        `${secondCard.dataset.animal}, pareja encontrada`
-      );
-
-      matches += 1;
-
-      matchesElement.textContent =
-        String(matches);
-
-      gameMessage.textContent =
-        `¡Encontraste la pareja de ${firstCard.dataset.animal}!`;
-
-      resetSelection();
-
-      if (matches === animals.length) {
-        gameMessage.textContent =
-          `¡Excelente! Encontraste todas las parejas en ${moves} movimientos.`;
+        [
+          shuffledCards[index],
+          shuffledCards[randomIndex]
+        ] = [
+          shuffledCards[randomIndex],
+          shuffledCards[index]
+        ];
       }
 
-      return;
+      return shuffledCards;
     }
 
-    lockBoard = true;
+    function createGame() {
+      if (mismatchTimer !== null) {
+        clearTimeout(mismatchTimer);
+        mismatchTimer = null;
+      }
 
-    gameMessage.textContent =
-      "No son iguales. Intenta recordar dónde están.";
+      firstCard = null;
+      secondCard = null;
+      lockBoard = false;
+      moves = 0;
+      matches = 0;
 
-    mismatchTimer = setTimeout(() => {
-      firstCard.classList.remove("is-open");
-      secondCard.classList.remove("is-open");
+      movesElement.textContent = "0";
+      matchesElement.textContent = "0";
+      gameMessage.textContent = "";
 
-      firstCard.setAttribute(
-        "aria-label",
-        "Tarjeta oculta"
+      const duplicatedAnimals = animals.flatMap(
+        (animal) => [
+          {
+            ...animal,
+            cardId: `${animal.name}-1`
+          },
+          {
+            ...animal,
+            cardId: `${animal.name}-2`
+          }
+        ]
       );
 
-      secondCard.setAttribute(
+      const shuffledAnimals =
+        shuffleCards(duplicatedAnimals);
+
+      memoryGrid.innerHTML = "";
+
+      shuffledAnimals.forEach((animal) => {
+        const button =
+          document.createElement("button");
+
+        button.className = "memory-card";
+        button.type = "button";
+        button.dataset.animal = animal.name;
+        button.dataset.cardId = animal.cardId;
+
+        button.setAttribute(
+          "aria-label",
+          "Tarjeta oculta"
+        );
+
+        button.innerHTML = `
+          <span class="memory-card-inner">
+
+            <span class="memory-card-front">
+              <span aria-hidden="true">?</span>
+            </span>
+
+            <span class="memory-card-back">
+              <img
+                src="${animal.image}"
+                alt="${animal.name}"
+              >
+              <span>${animal.name}</span>
+            </span>
+
+          </span>
+        `;
+
+        button.addEventListener(
+          "click",
+          flipCard
+        );
+
+        memoryGrid.appendChild(button);
+      });
+    }
+
+    function flipCard(event) {
+      const selectedCard =
+        event.currentTarget;
+
+      if (
+        lockBoard ||
+        selectedCard === firstCard ||
+        selectedCard.classList.contains("is-matched") ||
+        selectedCard.classList.contains("is-open")
+      ) {
+        return;
+      }
+
+      selectedCard.classList.add("is-open");
+
+      selectedCard.setAttribute(
         "aria-label",
-        "Tarjeta oculta"
+        selectedCard.dataset.animal
       );
 
-      resetSelection();
+      if (firstCard === null) {
+        firstCard = selectedCard;
+        return;
+      }
 
-      mismatchTimer = null;
-    }, 900);
-  }
+      secondCard = selectedCard;
+      moves += 1;
 
+      movesElement.textContent =
+        String(moves);
 
-  function resetSelection() {
-    firstCard = null;
-    secondCard = null;
-    lockBoard = false;
-  }
+      checkForMatch();
+    }
 
+    function checkForMatch() {
+      const isMatch =
+        firstCard.dataset.animal ===
+        secondCard.dataset.animal;
 
-  restartButton.addEventListener(
-    "click",
-    createGame
-  );
+      if (isMatch) {
+        const animalName =
+          firstCard.dataset.animal;
 
+        firstCard.classList.remove("is-open");
+        secondCard.classList.remove("is-open");
 
-  createGame();
-</script>
+        firstCard.classList.add("is-matched");
+        secondCard.classList.add("is-matched");
+
+        firstCard.disabled = true;
+        secondCard.disabled = true;
+
+        firstCard.setAttribute(
+          "aria-label",
+          `${animalName}, pareja encontrada`
+        );
+
+        secondCard.setAttribute(
+          "aria-label",
+          `${animalName}, pareja encontrada`
+        );
+
+        matches += 1;
+
+        matchesElement.textContent =
+          String(matches);
+
+        gameMessage.textContent =
+          `¡Encontraste la pareja de ${animalName}!`;
+
+        resetSelection();
+
+        if (matches === animals.length) {
+          gameMessage.textContent =
+            `¡Excelente! Encontraste todas las parejas en ${moves} movimientos.`;
+        }
+
+        return;
+      }
+
+      lockBoard = true;
+
+      gameMessage.textContent =
+        "No son iguales. Intenta recordar dónde están.";
+
+      mismatchTimer = setTimeout(() => {
+        firstCard.classList.remove("is-open");
+        secondCard.classList.remove("is-open");
+
+        firstCard.setAttribute(
+          "aria-label",
+          "Tarjeta oculta"
+        );
+
+        secondCard.setAttribute(
+          "aria-label",
+          "Tarjeta oculta"
+        );
+
+        resetSelection();
+        mismatchTimer = null;
+      }, 900);
+    }
+
+    function resetSelection() {
+      firstCard = null;
+      secondCard = null;
+      lockBoard = false;
+    }
+
+    restartButton.addEventListener(
+      "click",
+      createGame
+    );
+
+    createGame();
+  </script>
 
 </body>
 </html>
